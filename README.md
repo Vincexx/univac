@@ -36,7 +36,6 @@ $ php artisan key:generate
 
 # Migration and Seeder
 $ php artisan migrate
-$ php artisan db:seed
 
 # serve at localhost:8000
 $ php artisan serve
