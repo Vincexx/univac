@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    University Virtual Accreditation
                 </div>
 
                 <div class="links">
