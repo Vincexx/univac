@@ -17,7 +17,7 @@
           </v-list-item>
           
           <v-sheet
-            color="grey lighten-4"
+            color="grey lighten-5"
             class="pa-4 text-center"
         >
             <v-avatar

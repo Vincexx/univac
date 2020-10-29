@@ -37682,7 +37682,7 @@ var render = function() {
                 "v-sheet",
                 {
                   staticClass: "pa-4 text-center",
-                  attrs: { color: "grey lighten-4" }
+                  attrs: { color: "grey lighten-5" }
                 },
                 [
                   _c("v-avatar", {
