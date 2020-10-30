@@ -1,100 +1,235 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    University Virtual Accreditation
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+@section('banner')
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+      <div class="owl-banner owl-carousel">
+      <div class="banner-item-01">
+          <div class="overlay">
+            <div class="text-content">
+              <h4>CAVITE STATE UNIVERSITY</h4>
+              <h2>UNIVERSITY VIRTUAL ACCREDITATION CENTER</h2>
             </div>
+          </div>
         </div>
-    </body>
-</html>
+      </div>
+    </div>
+    <!-- Banner Ends Here -->
+@endsection
+
+@section('showcase')
+  <div class="best-features">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>CvSU at A Glance</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="left-content">
+            <h4>ABOUT OUR OFFICE</h4>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel repudiandae corporis fugit fugiat, doloribus voluptates facilis ab laboriosam nesciunt magni dignissimos voluptatem! Facere asperiores nam voluptas! Officia commodi illo natus!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam necessitatibus perferendis vero maiores pariatur aut reiciendis facere explicabo esse, fuga, voluptatibus natus ipsum nam dicta voluptas quisquam molestias nulla magni.</p>
+            <hr>
+            <ul class="nav">
+              <li><a href="https://www.facebook.com/CaviteStateU" target="__blank"><i class="fa fa-facebook fa-2x mr-3" aria-hidden="true" style="color: #34ee3d;"></i></a></li>
+              <li><a href="https://cvsu.edu.ph/" target="__blank"><i class="fa fa-link fa-2x" aria-hidden="true" style="color: #34ee3d;"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="right-image">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/_4bQ1Z9gUuA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('campuses')
+  <div class="latest-products">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>VIRTUAL ACCREDITATION ROOMS OF COLLEGES/CAMPUSES</h2>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="product-item">
+          <a href="#"><img src="{{ asset('img/cafenr.png') }}" alt=""></a>
+            <div class="down-content">
+              <a href="#"><h4>CAFENR</h4></a>
+              <h6>September 06, 2020</h6>
+              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+              <ul class="stars">
+                <li><a href="program.html">PROGRAMS</a></li>
+                <li><a href="">CERTIFICATES</a></li>
+                
+              </ul> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="product-item">
+            <a href="#"><img src="{{ asset('img/cas.jpg') }}" alt=""></a>
+            <div class="down-content">
+              <a href="#"><h4>CAS</h4></a>
+              <h6>September 06, 2020</h6>
+              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+              <ul class="stars">
+                <li><a href="">PROGRAMS</a></li>
+                <li><a href="">CERTIFICATES</a></li>
+                
+              </ul> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="product-item">
+            <a href="#"><img src="{{ asset('img/ccj.jpg') }}" alt=""></a>
+            <div class="down-content">
+              <a href="#"><h4>CCJ</h4></a>
+              <h6>September 06, 2020</h6>
+              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+              <ul class="stars">
+                <li><a href="">PROGRAMS</a></li>
+                <li><a href="">CERTIFICATES</a></li>
+                
+              </ul> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="product-item">
+            <a href="#"><img src="{{ asset('img/ceit.jpg') }}" alt=""></a>
+            <div class="down-content">
+              <a href="#"><h4>CEIT</h4></a>
+              <h6>September 06, 2020</h6>
+              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+              <ul class="stars">
+                <li><a href="">PROGRAMS</a></li>
+                <li><a href="">CERTIFICATES</a></li>
+                
+              </ul> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="product-item">
+          <a href="#"><img src="{{ asset('img/ced.jpg') }}" alt=""></a>
+            <div class="down-content">
+              <a href="#"><h4>CEd</h4></a>
+              <h6>September 06, 2020</h6>
+              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+              <ul class="stars">
+                <li><a href="">PROGRAMS</a></li>
+                <li><a href="">CERTIFICATES</a></li>
+                
+              </ul> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="product-item">
+            <a href="#"><img src="{{ asset('img/cemd.jpg') }}" alt=""></a>
+            <div class="down-content">
+              <a href="#"><h4>CEMDS</h4></a>
+              <h6>September 06, 2020</h6>
+              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+              <ul class="stars">
+                <li><a href="">PROGRAMS</a></li>
+                <li><a href="">CERTIFICATES</a></li>
+                
+              </ul> 
+            </div>
+          </div>
+        </div>
+
+        
+      
+      </div>
+    </div>
+  </div>
+@endsection
+
+    
+@section('documents')
+  <div class="send-message">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Others</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="others">
+            <li>
+                <a href="" target="__blank">Accreditation Status</a>
+            </li>
+            <li>
+                <a>Survey Visit Schedule</a>
+              
+            </li>
+            <li>
+                <a>Photo Documentation </a>
+            
+            </li>
+            <li>
+                <a>Accomplishment Report</a>
+                
+            </li>
+            <li>
+              <a>List of Internal Accreditors</a>
+            
+          </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-form">
+            <form id="contact" action="" method="post">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <fieldset>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <fieldset>
+                    <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <fieldset>
+                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message" required=""></textarea>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <button type="submit" id="form-submit" class="filled-button">Send Message</button>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+@endsection

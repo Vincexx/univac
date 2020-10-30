@@ -7,7 +7,7 @@
       
         <v-list dense>
 
-          <v-list-item link>
+          <v-list-item link @click="homepage()">
             <v-list-item-action>
               <v-icon>mdi-arrow-left</v-icon>
             </v-list-item-action>
@@ -30,32 +30,38 @@
         </v-sheet>
 
 
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon>mdi-shape</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Dashboard</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <router-link :to="{ name : 'dashboard' }">
+              <v-list-item link>
+                <v-list-item-action>
+                  <v-icon>mdi-shape</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Dashboard</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+          </router-link>
 
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon>mdi-account-group</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Users</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <router-link :to="{ name : 'users' }">
+              <v-list-item link>
+                <v-list-item-action>
+                  <v-icon>mdi-account-group</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Users</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+          </router-link>
 
-           <v-list-item link>
-            <v-list-item-action>
-              <v-icon>mdi-school</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Campuses</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <router-link :to="{ name : 'campuses' }">
+            <v-list-item link>
+              <v-list-item-action>
+                <v-icon>mdi-school</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Campuses</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </router-link>
 
           <v-list-item link>
             <v-list-item-action>
@@ -81,32 +87,7 @@
       </v-app-bar>
   
       <v-main>
-        <v-container
-          class="fill-height"
-          fluid
-        >
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col class="text-center">
-              <v-tooltip left>
-                <template v-slot:activator="{ on }">
-                  <v-btn
-                    :href="source"
-                    icon
-                    large
-                    target="_blank"
-                    v-on="on"
-                  >
-                    <v-icon large>mdi-code-tags</v-icon>
-                  </v-btn>
-                </template>
-                <span>Source</span>
-              </v-tooltip>
-            </v-col>
-          </v-row>
-        </v-container>
+        <router-view></router-view>
       </v-main>
       <v-footer
         color="green"
@@ -130,6 +111,9 @@ export default {
             .then(res => {
                 window.location.href = '/';
             }).catch(err => console.log(err))
+        },
+        homepage() {
+          window.location.href = "/"
         }
     }
 }

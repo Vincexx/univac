@@ -24,10 +24,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->get('admin/{any}', function () {
     return view('admin.dashboard');
-})->where('any', '[\/\w\.-]*');
+})->where('any', '[\/\w\.-]*')->name('admin-dashboard');
 
 Route::post('logout', function() {
 
+    Auth::user()->tokens()->delete();
     Auth::logout();
     return redirect('/');
 
