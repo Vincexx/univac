@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @yield('title')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -43,47 +43,7 @@
             </div>  
             <!-- ***** Preloader End ***** -->
 
-            <!-- Header -->
-            <header class="">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container">
-                    <a class="navbar-brand" href="index.html"><h2>CvSU <em>IDO</em></h2></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home
-                            <span class="sr-only">(current)</span>
-                            </a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
-                        </li>
-                        {{-- @if (auth()->user()->role == 'admin')
-                            <li class="nav-item">
-                                <a class="nav-link" href="admin/dashboard">Dashboard</a>
-                            </li>
-                        @endif --}}
-                        @auth
-                            <li class="nav-item">
-                                <form action="{{ route('logout') }}" method="POST" id="myform">
-                                    @csrf
-                                    <a class="nav-link" onclick="document.getElementById('myform').submit();">Logout</a>
-                                </form>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
-                            </li>
-                        @endauth
-
-                        </ul>
-                    </div>
-                    </div>
-                </nav>
-            </header>
+            @yield('header')
 
         
             <main>
@@ -96,19 +56,7 @@
                 @yield('documents')
             </main>
 
-            <footer>
-                <div class="container">
-                    <div class="row">
-                    <div class="col-md-12">
-                        <div class="inner-content">
-                        <p>Copyright &copy; 2020 CVSU - IDO
-                        
-                    
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </footer>
+           @yield('footer')
 
     </div>
 

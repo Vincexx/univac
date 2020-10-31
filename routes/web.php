@@ -28,8 +28,12 @@ Route::middleware('auth')->get('admin/{any}', function () {
 
 Route::post('logout', function() {
 
-    Auth::user()->tokens()->delete();
+    Auth::user()->forceFill([
+        'api_token' => null,
+    ])->save();
     Auth::logout();
     return redirect('/');
 
 })->name('logout');
+
+Route::get('about', 'FrontendController@about')->name('about');

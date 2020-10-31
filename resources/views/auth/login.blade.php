@@ -1,73 +1,161 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+@section('title')
+    <title>Login - CvSU - UNIVAC</title>
+@endsection
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+@section('header')
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+          <div class="container">
+              <a class="navbar-brand" href="/"><h2>CvSU <em>IDO</em></h2></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ml-auto">
+                  <li class="nav-item ">
+                      <a class="nav-link" href="/">Home
+                      </a>
+                  </li> 
+                  <li class="nav-item ">
+                      <a class="nav-link" href="{{ route('about') }}">About Us
+                        
+                      </a>
+                  </li>
+                  {{-- @if (auth()->user()->role == 'admin')
+                      <li class="nav-item">
+                          <a class="nav-link" href="admin/dashboard">Dashboard</a>
+                      </li>
+                  @endif --}}
+                  @auth
+                      <li class="nav-item">
+                          <form action="{{ route('logout') }}" method="POST" id="myform">
+                              @csrf
+                              <a class="nav-link" onclick="document.getElementById('myform').submit();">Logout</a>
+                          </form>
+                      </li>
+                  @else
+                      <li class="nav-item active">
+                          <a class="nav-link" href="{{ route('login') }}">Login
+                            <span class="sr-only">(current)</span></a>
+                      </li>
+                  @endauth
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </header>
+@endsection
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+@section('banner')
+    <div class="login">
+        <div class="container">
+            <div class="login-card text-center">
+                <div class="title">
+                    <img src="{{ asset('img/logo.png') }}" alt="">
+                    <h5 class="py-3">CAVITE STATE UNIVERSITY</h4>
                 </div>
+
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+                        
+                    <div class="email">
+                        <input type="email" name="email" placeholder="Email Address" class="text-box @error('email') is-invalid @enderror"
+                        value="{{ old('email') }}" required autocomplete="email">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="password">
+                        <input type="password" name="password" placeholder="Password" class="text-box @error('password') is-invalid @enderror"
+                        value="{{ old('password') }}" required autocomplete="password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    
+                    <input type="submit" class="btn btn-success">
+                </form>
+            
+
+            
             </div>
         </div>
     </div>
-</div>
+@endsection
+
+<style>
+   
+    .login-card {
+        width: 500px;
+        -webkit-box-shadow: -5px 9px 25px -8px rgba(0,0,0,0.73);
+        -moz-box-shadow: -5px 9px 25px -8px rgba(0,0,0,0.73);
+        box-shadow: -5px 9px 25px -8px rgba(0,0,0,0.73);
+        padding: 0px 0px 20px 0px;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+    }
+
+    .login-card .title{
+        background: #f9f9f9;
+        padding: 10px 0;
+    }
+
+    .login-card .title img{
+        width: 80px;
+    }
+
+    .login-card .title h5{
+        font-weight: bold;
+        color: rgb(104, 103, 103);
+    }
+
+    .login-card form {
+        margin: 20px 0;
+    }
+    .login-card .text-box{
+        width: 300px;
+        margin:5px 0;
+        padding: 10px 5px;
+    }
+
+    .login-card .btn-success{
+       background: #34ee3d;
+       width: 200px;
+       border: none;    
+       padding: 10px 0;
+       margin: 20px 0;
+    }
+
+    footer {
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        transform: translateY(-80%);
+    }
+</style>
+
+@section('footer')
+    <footer >
+        <div class="container">
+            <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="inner-content">
+                <p>Copyright &copy; 2020 CVSU - IDO
+                </div>
+            </div>
+            </div>
+        </div>
+    </footer>
 @endsection

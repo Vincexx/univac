@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -50,8 +51,14 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if($user->role == "admin") {
-            $user->createToken('authToken', ['admin'])->plainTextToken;
+            $token = Str::random(80);
+
+            $user->forceFill([
+                'api_token' => hash('sha256', $token),
+            ])->save();
+
             return redirect('admin/dashboard');
+
         } else {
             return redirect('/');
         }

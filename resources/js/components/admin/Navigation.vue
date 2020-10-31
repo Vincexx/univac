@@ -22,7 +22,7 @@
         >
             <v-avatar
             class="mb-4"
-            color="grey darken-1"
+            color="green darken-1"
             size="64"
             ></v-avatar>
 
@@ -63,6 +63,28 @@
             </v-list-item>
           </router-link>
 
+          <router-link :to="{ name : 'campuses' }">
+            <v-list-item link>
+              <v-list-item-action>
+                <v-icon>mdi-pencil</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Programs</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </router-link>
+
+          <router-link :to="{ name : 'campuses' }">
+            <v-list-item link>
+              <v-list-item-action>
+                <v-icon>mdi-delete</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Trash</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </router-link>
+
           <v-list-item link>
             <v-list-item-action>
               <v-icon>mdi-logout</v-icon>
@@ -87,7 +109,9 @@
       </v-app-bar>
   
       <v-main>
-        <router-view></router-view>
+        <router-view
+        :authUser="authuser"
+        ></router-view>
       </v-main>
       <v-footer
         color="green"
@@ -99,9 +123,7 @@
 </template>
 <script>
 export default {
-    props: {
-        source: String,
-    },
+    props : ["authuser"],
     data: () => ({
         drawer: null,
     }),

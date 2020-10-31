@@ -1,5 +1,7 @@
 @extends('layouts.admin-app')
 
 @section('content')
-    <admin-navigation />
+    @if (Auth::check())
+        <admin-navigation :authUser="{{ Auth::user() }}"  />
+    @endif
 @endsection

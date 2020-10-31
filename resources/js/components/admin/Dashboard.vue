@@ -8,7 +8,7 @@
                         <v-card>
                             <v-card-title>Users</v-card-title>
                             <v-card-text>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem natus quia optio sed voluptas cumque sit fugit odio facere laborum nisi, a perspiciatis rerum cum distinctio veniam enim placeat architecto?
+                                <h1>12</h1>
                             </v-card-text>
                         </v-card>
                     </v-col>
@@ -17,7 +17,7 @@
                         <v-card>
                             <v-card-title>Campuses</v-card-title>
                             <v-card-text>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem natus quia optio sed voluptas cumque sit fugit odio facere laborum nisi, a perspiciatis rerum cum distinctio veniam enim placeat architecto?
+                                <h1>16</h1>
                             </v-card-text>
                         </v-card>
                     </v-col>
@@ -26,7 +26,7 @@
                         <v-card>
                             <v-card-title>Programs</v-card-title>
                             <v-card-text>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem natus quia optio sed voluptas cumque sit fugit odio facere laborum nisi, a perspiciatis rerum cum distinctio veniam enim placeat architecto?
+                                <h1>30</h1>
                             </v-card-text>
                         </v-card>
                     </v-col>

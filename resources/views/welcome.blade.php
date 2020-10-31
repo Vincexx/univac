@@ -1,5 +1,58 @@
 @extends('layouts.app')
 
+
+@section('title')
+    <title>CvSU Internal Development Office</title>
+@endsection
+
+@section('header')
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+          <div class="container">
+              <a class="navbar-brand" href="/"><h2>CvSU <em>IDO</em></h2></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="/">Home
+                      <span class="sr-only">(current)</span>
+                      </a>
+                  </li> 
+                  <li class="nav-item">
+                  <a class="nav-link" href="{{ route('about') }}">About Us</a>
+                  </li>
+
+                  @if (Auth::check())
+                      @if (Auth::user()->role == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin/dashboard">Dashboard</a>
+                        </li>
+                      @endif
+                  @endif
+                  
+                  @auth
+                      <li class="nav-item">
+                          <form action="{{ route('logout') }}" method="POST" id="myform">
+                              @csrf
+                              <a class="nav-link" onclick="document.getElementById('myform').submit();">Logout</a>
+                          </form>
+                      </li>
+                  @else
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ route('login') }}">Login</a>
+                      </li>
+                  @endauth
+
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </header>
+@endsection
+
 @section('banner')
     <!-- Page Content -->
     <!-- Banner Starts Here -->
@@ -8,8 +61,8 @@
       <div class="banner-item-01">
           <div class="overlay">
             <div class="text-content">
-              <h4>CAVITE STATE UNIVERSITY</h4>
-              <h2>UNIVERSITY VIRTUAL ACCREDITATION CENTER</h2>
+              <h2>CAVITE STATE UNIVERSITY</h4>
+              <h4>VIRTUAL ACCREDITATION CENTER</h2>
             </div>
           </div>
         </div>
@@ -232,4 +285,20 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('footer')
+  <footer>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="inner-content">
+            <p>Copyright &copy; 2020 CVSU - IDO
+            
+        
+            </div>
+        </div>
+        </div>
+    </div>
+  </footer>
 @endsection

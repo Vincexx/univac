@@ -4,6 +4,7 @@
       <v-container>
         <v-card>
           <v-card-title>
+            
             List of Users
             <v-spacer></v-spacer>
             <v-text-field
@@ -13,7 +14,13 @@
               single-line
               hide-details
             ></v-text-field>
-          </v-card-title>
+            
+          </v-card-title>      
+
+          <v-btn class="mx-2 my-2" fab dark color="indigo">
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+
           <v-data-table
             :headers="headers"
             :items="users"
@@ -48,8 +55,15 @@
 
 <script>
   export default {
+    props : ['authUser'],
     data () {
       return {
+        config : { 
+            'headers': { 
+              'Authorization': 'Bearer ' + this.authUser.api_token,
+              'Accept' : 'application/json',
+            } 
+        },
         search: '',
         users : [],
         headers: [
@@ -70,7 +84,7 @@
     },
     methods: {
       fetchUsers() {
-        axios.get('/api/users')
+        axios.get('/api/users', this.config)
         .then(res => this.users = res.data)
         .catch(err => console.log(err))
       }
