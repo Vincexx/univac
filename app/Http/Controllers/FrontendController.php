@@ -8,11 +8,15 @@ use App\Campus;
 
 class FrontendController extends Controller
 {
-    public function index() {
+    public function showAllCampuses() {
         return view('welcome')->with('campuses', Campus::all());
     }
 
     public function about() {
         return view('about');
+    }
+
+    public function showCampusPrograms(Campus $campus) {
+        return view('program')->with('campusPrograms', $campus->programs)->with('campus', $campus);
     }
 }

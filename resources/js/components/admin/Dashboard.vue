@@ -8,7 +8,7 @@
                         <v-card>
                             <v-card-title>Users</v-card-title>
                             <v-card-text>
-                                <h1>20</h1>
+                                <h1>{{ users.length }}</h1>
                             </v-card-text>
                         </v-card>
                     </v-col>
@@ -17,7 +17,7 @@
                         <v-card>
                             <v-card-title>Campuses</v-card-title>
                             <v-card-text>
-                                <h1>16</h1>
+                                <h1>{{ campuses.length }}</h1>
                             </v-card-text>
                         </v-card>
                     </v-col>
@@ -26,7 +26,7 @@
                         <v-card>
                             <v-card-title>Programs</v-card-title>
                             <v-card-text>
-                                <h1>30</h1>
+                                <h1>{{ programs.length }}</h1>
                             </v-card-text>
                         </v-card>
                     </v-col>
@@ -39,6 +39,34 @@
 
 <script>
 export default {
-    
+    data () {
+        return {
+            users : [],
+            campuses : [],
+            programs : [],
+        }
+    },
+    created() {
+        this.fetchUsers()
+        this.fetchCampuses()
+        this.fetchPrograms()
+    },
+    methods : {
+        fetchUsers() {
+            axios.get('/api/users', this.config)
+            .then(res => this.users = res.data)
+            .catch(err => console.log(err))
+        },
+        fetchCampuses() {
+            axios.get('/api/campuses', this.config)
+            .then(res => this.campuses = res.data)
+            .catch(err => console.log(err))
+        },
+        fetchPrograms() {
+            axios.get('/api/programs', this.config)
+            .then(res => this.programs = res.data)
+            .catch(err => console.log(err))
+        },
+    }
 }
 </script>

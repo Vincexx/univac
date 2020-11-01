@@ -74,7 +74,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="addProgram()"
+            @click="!edit ? addProgram() : updateProgram()"
           >
             Save
           </v-btn>
@@ -88,7 +88,7 @@
 
 <script>
   export default {
-    props : ['showDialog', 'campus_id', 'edit', 'campusProgram1'],
+    props : ['showDialog', 'campusID', 'edit', 'campusProgram1'],
     data () {
       return {
         levels: [
@@ -103,12 +103,12 @@
         modal: false,
         menu2: false,
         program2 : {
-          'campus_id' : this.campus_id,
+          'campus_id' : this.campusID,
           'name' : '',
           'level' : '',
           'validity' : new Date().toISOString().substr(0, 10),
-          'link' : ''
-        }
+          'link' : '',
+        },
         
       }
       
@@ -121,7 +121,6 @@
               return false
           }
       },
-      
       program() {
           if(this.campusProgram1) {
               return this.campusProgram1
@@ -148,6 +147,7 @@
             this.$parent.$emit('hideDialog')
         },
         addProgram() {
+            this.program.campus_id = this.campusID 
             axios.post('/api/programs-per-campuses', this.program)
             .then(res => {
                 this.program.name = ''
@@ -156,7 +156,17 @@
                 this.program.link = ''
                 this.$parent.$emit('programpercampus_added', 'Program added successful.')
             }).catch(err => console.log(err))
-        } 
+        },
+        updateProgram() {
+            axios.put('/api/programs-per-campuses/' + this.program.id, this.program)
+            .then(res => {
+                this.program.name = ''
+                this.program.level = ''
+                this.program.validity = ''
+                this.program.link = ''
+                this.$parent.$emit('programpercampus_added', 'Program updated successful.')
+            }).catch(err => console.log(err))
+        }
     }
 
   }

@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'CvSU Institutional Development Office') }}</title>
+    <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/icon type">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

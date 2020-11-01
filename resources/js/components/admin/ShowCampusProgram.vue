@@ -79,15 +79,17 @@
         </v-card>
       </v-container>
     </v-app>
-    <AddCampusProgram :showDialog="showDialog" :campus_id="id" :edit="edit" :campusProgram1="campusProgram1" />
+    <AddCampusProgram :showDialog="showDialog" :campusID="id" :edit="edit" :campusProgram1="campusProgram1" />
   </div>
 </template>
 
 <script>
   import AddCampusProgram from '../admin/children/AddCampusProgram'
+  
   export default {
     mounted() {
       this.$on('hideDialog', () => {
+        this.edit = false,
         this.showDialog = false
       })
 
@@ -114,7 +116,7 @@
         headers: [
         { text: 'Name of Program', value: 'name' },
         { text: 'Level', value: 'level' },
-        { text: 'Validity', value: 'validity' },
+        { text: 'Validity', value: 'validity'},
         { text: 'Link', value: 'link' },
         { text: 'Actions', value: 'actions', sortable: false },
         ],

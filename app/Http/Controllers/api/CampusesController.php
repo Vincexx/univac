@@ -16,7 +16,8 @@ class CampusesController extends Controller
      */
     public function index()
     {
-        return response()->json(Campus::all(), 200);
+        $campuses = Campus::with('programs')->get();
+        return response()->json($campuses);
     }
 
     /**

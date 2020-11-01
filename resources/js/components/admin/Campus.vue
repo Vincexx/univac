@@ -47,18 +47,18 @@
           >
 
           <template v-slot:item.image="{ item }">
-              <div>
+              <router-link :to="{ path : '/admin/campus/' + item.id + '/' + item.name }">
                 <v-img :src="'/storage/' + item.image" alt="image" width="100px" height="60px" class="m-2"></v-img>
-              </div>
+              </router-link>
           </template>
 
-           <template v-slot:item.id="{ item }">
+           <!-- <template v-slot:item.id="{ item }">
               <div>
                   <router-link :to="{ path : '/admin/campus/' + item.id + '/' + item.name }">
-                      {{ item.id }}
+                      {{ item.programs.length }}
                   </router-link>
               </div>
-            </template>
+            </template> -->
       
            <template v-slot:item.actions="{ item }">
 
@@ -161,9 +161,10 @@
         headers: [
            { text: 'Image', value: 'image' },
            { text: 'Colleges/Campuses', value: 'name' },
-           { text: 'Number of Programs', value: 'id' },
+           { text: 'Number of Programs', value: 'programs.length' },
           { text: 'Actions', value: 'actions', sortable: false },
         ],
+        campusPrograms : [],
         
       }
     },

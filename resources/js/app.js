@@ -8,6 +8,7 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 Vue.use(Vuetify);
+var moment = require('moment');
 
 import Dashboard from './components/admin/Dashboard.vue'
 import Users from './components/admin/User.vue'

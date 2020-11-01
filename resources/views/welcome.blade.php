@@ -112,101 +112,23 @@
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="product-item">
-          <a href="#"><img src="{{ asset('img/cafenr.png') }}" alt=""></a>
-            <div class="down-content">
-              <a href="#"><h4>CAFENR</h4></a>
-              <h6>September 06, 2020</h6>
-              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              <ul class="stars">
-                <li><a href="program.html">PROGRAMS</a></li>
-                <li><a href="">CERTIFICATES</a></li>
-                
-              </ul> 
+        @foreach ($campuses as $campus)
+          <div class="col-md-4">
+            <div class="product-item">
+            <a href="#"><img src="{{ asset('/storage/'. $campus->image) }}" alt=""></a>
+              <div class="down-content">
+              <a><h4>{{ $campus->name }}</h4></a>
+                {{-- <p>Schedule Visit : </p> --}}
+                <ul class="stars">
+                <li><a href="{{ route('campusPrograms', $campus->id) }}">PROGRAMS</a></li>
+                  <li><a href="">CERTIFICATES</a></li>
+                  
+                </ul> 
+              </div>
             </div>
           </div>
-        </div>
+        @endforeach
 
-        <div class="col-md-4">
-          <div class="product-item">
-            <a href="#"><img src="{{ asset('img/cas.jpg') }}" alt=""></a>
-            <div class="down-content">
-              <a href="#"><h4>CAS</h4></a>
-              <h6>September 06, 2020</h6>
-              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              <ul class="stars">
-                <li><a href="">PROGRAMS</a></li>
-                <li><a href="">CERTIFICATES</a></li>
-                
-              </ul> 
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="product-item">
-            <a href="#"><img src="{{ asset('img/ccj.jpg') }}" alt=""></a>
-            <div class="down-content">
-              <a href="#"><h4>CCJ</h4></a>
-              <h6>September 06, 2020</h6>
-              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              <ul class="stars">
-                <li><a href="">PROGRAMS</a></li>
-                <li><a href="">CERTIFICATES</a></li>
-                
-              </ul> 
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="product-item">
-            <a href="#"><img src="{{ asset('img/ceit.jpg') }}" alt=""></a>
-            <div class="down-content">
-              <a href="#"><h4>CEIT</h4></a>
-              <h6>September 06, 2020</h6>
-              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              <ul class="stars">
-                <li><a href="">PROGRAMS</a></li>
-                <li><a href="">CERTIFICATES</a></li>
-                
-              </ul> 
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="product-item">
-          <a href="#"><img src="{{ asset('img/ced.jpg') }}" alt=""></a>
-            <div class="down-content">
-              <a href="#"><h4>CEd</h4></a>
-              <h6>September 06, 2020</h6>
-              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              <ul class="stars">
-                <li><a href="">PROGRAMS</a></li>
-                <li><a href="">CERTIFICATES</a></li>
-                
-              </ul> 
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="product-item">
-            <a href="#"><img src="{{ asset('img/cemd.jpg') }}" alt=""></a>
-            <div class="down-content">
-              <a href="#"><h4>CEMDS</h4></a>
-              <h6>September 06, 2020</h6>
-              <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              <ul class="stars">
-                <li><a href="">PROGRAMS</a></li>
-                <li><a href="">CERTIFICATES</a></li>
-                
-              </ul> 
-            </div>
-          </div>
-        </div>
 
         
       

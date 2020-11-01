@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "moment": "^2.29.1",
         "vue-router": "^3.4.7",
         "vuetify": "^2.3.15"
     }
