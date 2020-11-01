@@ -14,4 +14,10 @@ class Campus extends Model
     protected $fillable = [
         'name', 'description', 'image', 'image_path'
     ];
+
+    public function programs() {
+        
+        return $this->hasMany(ProgramsPerCampus::class);
+
+    }
 }

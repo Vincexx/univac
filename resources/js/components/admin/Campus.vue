@@ -23,9 +23,6 @@
 
       <v-container>
         <v-card>
-          <v-btn class="mx-2 my-2" fab dark color="indigo" @click.stop="showDialog=true">
-            <v-icon dark>mdi-plus</v-icon>
-          </v-btn>
         
           <v-card-title>
             List of Campuses
@@ -38,6 +35,11 @@
               hide-details
             ></v-text-field>
           </v-card-title>
+
+            <v-btn class="mx-2 my-2" fab dark color="indigo" @click.stop="showDialog=true">
+            <v-icon dark>mdi-plus</v-icon>
+          </v-btn>
+
           <v-data-table
             :headers="headers"
             :items="campuses"
@@ -49,8 +51,17 @@
                 <v-img :src="'/storage/' + item.image" alt="image" width="100px" height="60px" class="m-2"></v-img>
               </div>
           </template>
+
+           <template v-slot:item.id="{ item }">
+              <div>
+                  <router-link :to="{ path : '/admin/campus/' + item.id + '/' + item.name }">
+                      {{ item.id }}
+                  </router-link>
+              </div>
+            </template>
       
            <template v-slot:item.actions="{ item }">
+
               <v-icon
                   small
                   class="mr-2"
@@ -72,6 +83,7 @@
           </template>
           
           </v-data-table>
+          
         </v-card>
       </v-container>
     </v-app>
@@ -129,6 +141,7 @@
     props : ["authUser"],
     data () {
       return {
+        programsDialog : false,
         edit : false,
         config : { 
             'headers': { 
@@ -148,6 +161,7 @@
         headers: [
            { text: 'Image', value: 'image' },
            { text: 'Colleges/Campuses', value: 'name' },
+           { text: 'Number of Programs', value: 'id' },
           { text: 'Actions', value: 'actions', sortable: false },
         ],
         
@@ -169,7 +183,7 @@
         })
         .catch(err => console.log(err))
 
-      }
+      },
      
     } 
   }

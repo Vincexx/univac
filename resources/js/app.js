@@ -13,6 +13,7 @@ import Dashboard from './components/admin/Dashboard.vue'
 import Users from './components/admin/User.vue'
 import Campuses from './components/admin/Campus.vue'
 import Programs from './components/admin/Program.vue'
+import ShowCampusPrograms from './components/admin/ShowCampusProgram.vue'
 
 const router = new VueRouter ({
     mode : 'history',
@@ -42,6 +43,12 @@ const router = new VueRouter ({
             name : 'programs'
         },
 
+        {
+            path : '/admin/campus/:id/:campus',
+            component : ShowCampusPrograms,
+            name : 'showcampusprograms',
+            props : true
+        },
     ]
 
 })

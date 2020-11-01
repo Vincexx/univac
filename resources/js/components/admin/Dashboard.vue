@@ -8,7 +8,7 @@
                         <v-card>
                             <v-card-title>Users</v-card-title>
                             <v-card-text>
-                                <h1>12</h1>
+                                <h1>20</h1>
                             </v-card-text>
                         </v-card>
                     </v-col>

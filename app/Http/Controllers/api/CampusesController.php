@@ -49,7 +49,7 @@ class CampusesController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $image,
-        ]);
+        ]); 
 
         return response()->json([
             'message' => 'Campus Created Successfully.',
@@ -68,6 +68,13 @@ class CampusesController extends Controller
     {
         return response()->json($campus);
     }
+
+    public function showCampusPrograms(Campus $campus)
+    {
+        return response()->json($campus->programs);
+    }
+
+   
 
     /**
      * Show the form for editing the specified resource.

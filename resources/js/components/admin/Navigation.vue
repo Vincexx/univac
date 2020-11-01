@@ -30,7 +30,7 @@
         </v-sheet>
 
 
-          <router-link :to="{ name : 'dashboard' }">
+          <router-link :to="{ name : 'dashboard'}">
               <v-list-item link>
                 <v-list-item-action>
                   <v-icon>mdi-shape</v-icon>
@@ -74,7 +74,7 @@
             </v-list-item>
           </router-link>
 
-          <router-link :to="{ name : 'campuses' }">
+          <router-link :to="{ name : '' }">
             <v-list-item link>
               <v-list-item-action>
                 <v-icon>mdi-delete</v-icon>

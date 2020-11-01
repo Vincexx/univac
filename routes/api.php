@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->resource('users', 'api\UsersController');
-Route::middleware('auth:api')->resource('campuses', 'api\CampusesController');
+Route::resource('users', 'api\UsersController');
+
+Route::resource('campuses', 'api\CampusesController');
+Route::get('campuses/{campus}/programs', 'api\CampusesController@showCampusPrograms');
+
 Route::resource('programs', 'api\ProgramsController');
+Route::resource('programs-per-campuses', 'api\ProgramsPerCampusesController');
