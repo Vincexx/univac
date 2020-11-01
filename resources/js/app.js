@@ -12,6 +12,7 @@ Vue.use(Vuetify);
 import Dashboard from './components/admin/Dashboard.vue'
 import Users from './components/admin/User.vue'
 import Campuses from './components/admin/Campus.vue'
+import Programs from './components/admin/Program.vue'
 
 const router = new VueRouter ({
     mode : 'history',
@@ -33,6 +34,12 @@ const router = new VueRouter ({
             path : '/admin/campuses',
             component : Campuses,
             name : 'campuses'
+        },
+
+        {
+            path : '/admin/programs',
+            component : Programs,
+            name : 'programs'
         },
 
     ]

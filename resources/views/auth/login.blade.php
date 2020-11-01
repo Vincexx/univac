@@ -83,7 +83,7 @@
                     </div>
 
                     
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" value="LOGIN" class="btn btn-success">
                 </form>
             
 

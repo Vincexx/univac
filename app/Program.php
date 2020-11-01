@@ -12,6 +12,6 @@ class Program extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'name', 'level', 'validity', 'link'
+        'name'
     ];
 }

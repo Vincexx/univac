@@ -63,7 +63,7 @@
             </v-list-item>
           </router-link>
 
-          <router-link :to="{ name : 'campuses' }">
+          <router-link :to="{ name : 'programs' }">
             <v-list-item link>
               <v-list-item-action>
                 <v-icon>mdi-pencil</v-icon>

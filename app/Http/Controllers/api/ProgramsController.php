@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Program;
 
 class ProgramsController extends Controller
 {
@@ -14,7 +15,7 @@ class ProgramsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Program::all(), 200);
     }
 
     /**
@@ -35,7 +36,18 @@ class ProgramsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only(['name']);
+
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $program = Program::create([
+            'name' => $data['name'],
+        ]);
+
+        return response()->json($program);
+          
     }
 
     /**
@@ -44,9 +56,9 @@ class ProgramsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Program $program)
     {
-        //
+        return response()->json($program);
     }
 
     /**
@@ -67,9 +79,16 @@ class ProgramsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Program $program)
     {
-        //
+
+        $program->update([
+            'name' => $request->name,
+        ]);
+
+        return response()->json([
+            'message' => "Program updated successfully."
+        ]);
     }
 
     /**
@@ -78,8 +97,12 @@ class ProgramsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Program $program)
     {
-        //
+        $program->delete();
+
+        return response()->json([
+            'message' => "Program deleted successfully."
+        ]);
     }
 }

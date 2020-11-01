@@ -15,7 +15,7 @@
 
             <v-text-field
                 name="name"
-                label="Title"
+                label="Name of Campus"
                 id="id"
                 v-model="campus.name"
             ></v-text-field>
