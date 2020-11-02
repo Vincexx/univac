@@ -25,3 +25,11 @@ Route::get('campuses/{campus}/programs', 'api\CampusesController@showCampusProgr
 
 Route::resource('programs', 'api\ProgramsController');
 Route::resource('programs-per-campuses', 'api\ProgramsPerCampusesController');
+
+Route::get('trash-campuses', 'api\TrashCampusesController@index');
+Route::patch('trash-campuses/{id}', 'api\TrashCampusesController@restore');
+Route::delete('trash-campuses/{id}', 'api\TrashCampusesController@destroy');
+
+Route::get('trash-programs', 'api\TrashProgramsController@index');
+Route::patch('trash-programs/{id}', 'api\TrashProgramsController@restore');
+Route::delete('trash-programs/{id}', 'api\TrashProgramsController@destroy');

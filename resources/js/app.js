@@ -14,6 +14,7 @@ import Dashboard from './components/admin/Dashboard.vue'
 import Users from './components/admin/User.vue'
 import Campuses from './components/admin/Campus.vue'
 import Programs from './components/admin/Program.vue'
+import Trash from './components/admin/Trash.vue'
 import ShowCampusPrograms from './components/admin/ShowCampusProgram.vue'
 
 const router = new VueRouter ({
@@ -48,6 +49,13 @@ const router = new VueRouter ({
             path : '/admin/campus/:id/:campus',
             component : ShowCampusPrograms,
             name : 'showcampusprograms',
+            props : true
+        },
+
+        {
+            path : '/admin/trash',
+            component : Trash,
+            name : 'trash',
             props : true
         },
     ]

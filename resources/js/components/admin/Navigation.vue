@@ -74,7 +74,7 @@
             </v-list-item>
           </router-link>
 
-          <router-link :to="{ name : '' }">
+          <router-link :to="{ name : 'trash' }">
             <v-list-item link>
               <v-list-item-action>
                 <v-icon>mdi-delete</v-icon>
@@ -131,11 +131,11 @@ export default {
         logout() {
             axios.post('/logout')
             .then(res => {
-                window.location.href = '/';
+                window.location.href = '/IDO';
             }).catch(err => console.log(err))
         },
         homepage() {
-          window.location.href = "/"
+          window.location.href = "/IDO"
         }
     }
 }

@@ -17,6 +17,7 @@ class FrontendController extends Controller
     }
 
     public function showCampusPrograms(Campus $campus) {
+
         return view('program')->with('campusPrograms', $campus->programs)->with('campus', $campus);
     }
 }

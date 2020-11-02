@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', 'FrontendController@showAllCampuses');
-Route::get('/campus/{campus}/programs', 'FrontendController@showCampusPrograms')->name('campusPrograms');
+Route::get('/IDO', 'FrontendController@showAllCampuses')->name('homepage');
+Route::get('/IDO/campus/{campus}/programs', 'FrontendController@showCampusPrograms')->name('campusPrograms');
 
 Auth::routes(); 
 
@@ -27,11 +27,13 @@ Route::middleware('auth')->get('admin/{any}', function () {
 
 Route::post('logout', function() {
 
-    Auth::user()->forceFill([
-        'api_token' => null,
-    ])->save();
-    Auth::logout();
-    return redirect('/');
+    if(Auth::check()){
+        Auth::user()->forceFill([
+            'api_token' => null,
+        ])->save();
+        Auth::logout();
+        return redirect(route('homepage'));
+    }
 
 })->name('logout');
 

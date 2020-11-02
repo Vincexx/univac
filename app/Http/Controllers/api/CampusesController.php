@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class CampusesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('delete_campus')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +45,7 @@ class CampusesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:campuses',
-            'description' => 'required',
+            'description' => '',
             'image' => 'image',
         ]);
 
@@ -120,10 +125,12 @@ class CampusesController extends Controller
      */
     public function destroy(Campus $campus)
     {
+
         $campus->delete();
 
         return response()->json([
             'message' => 'Campus has already removed.'
         ]);
+
     }
 }

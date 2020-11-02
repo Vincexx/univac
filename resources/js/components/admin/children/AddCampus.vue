@@ -25,7 +25,7 @@
             <v-textarea
             clearable
             clear-icon="x"
-            label="Description"
+            label="Description (Nullable)"
             v-model="campus.description"   
             ></v-textarea>
 

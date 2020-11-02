@@ -66,7 +66,11 @@
         deleteCampus() {
             axios.delete('/api/campuses/' + this.campus_id, this.config)
             .then(res => {
-                this.$parent.$emit('campus_deleted', 'Selected campus is already deleted.')
+                if(res.data.message) {
+                  this.$parent.$emit('campus_deleted', res.data.message)
+                } else {
+                  this.$parent.$emit('campus_deleted', 'Selected campus is already deleted.')
+                }
             }).catch(err => console.log(err))
         }
         
