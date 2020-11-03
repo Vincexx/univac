@@ -121,7 +121,7 @@
                 {{-- <p>Schedule Visit : </p> --}}
                 <ul class="stars">
                 <li><a href="{{ route('campusPrograms', $campus->id) }}">PROGRAMS</a></li>
-                  <li><a href="">CERTIFICATES</a></li>
+                <li><a href="{{ $campus->certificate }}" target="__blank">CERTIFICATES</a></li>
                   
                 </ul> 
               </div>

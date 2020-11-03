@@ -38,3 +38,4 @@ Route::post('logout', function() {
 })->name('logout');
 
 Route::get('about', 'FrontendController@about')->name('about');
+

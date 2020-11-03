@@ -47,6 +47,7 @@ class CampusesController extends Controller
             'name' => 'required|unique:campuses',
             'description' => '',
             'image' => 'image',
+            'certificate' => ''
         ]);
 
         $image = $request->image->store('campuses_images');
@@ -55,6 +56,7 @@ class CampusesController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $image,
+            'certificate' => $request->certificate,
         ]); 
 
         return response()->json([
@@ -112,6 +114,7 @@ class CampusesController extends Controller
         $campus->update([
             'name' => $request->name,
             'description' => $request->description,
+            'certificate' => $request->certificate,
         ]);
        
         return response()->json($campus);

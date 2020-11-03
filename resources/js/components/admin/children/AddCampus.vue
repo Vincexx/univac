@@ -29,6 +29,11 @@
             v-model="campus.description"   
             ></v-textarea>
 
+            <v-text-field
+                label="Link of Certificate"
+                v-model="campus.certificate"
+            ></v-text-field>
+
           
             <div v-if="campus.image && !previewImage" class="mb-2">
               <v-img :src="'/storage/' + campus.image" alt="image" v-if="edit">
@@ -90,7 +95,8 @@
         campus2 : {
           name : '',
           description : '',
-          image : ''
+          image : '',
+          certificate : ''
         },
         previewImage : '',
         form : new FormData(),
@@ -128,12 +134,14 @@
         this.form.append('name', this.campus.name);
         this.form.append('description', this.campus.description);
         this.form.append('image', this.file);
+        this.form.append('certificate', this.campus.certificate);
 
         axios.post('/api/campuses', this.form, this.config)
         .then(res => {
           this.campus.name = ''
           this.campus.description = ''
           this.previewImage = ''
+          this.campus.certificate = ''
           this.$parent.$emit('added_campus', 'Campus Added Successfully')
         }).catch(err => console.log(err))
       },
@@ -146,6 +154,7 @@
         form.append('name', this.campus.name);
         form.append('description', this.campus.description);
         form.append('image', this.file);
+        form.append('certificate', this.campus.certificate);
         form.append('_method', 'PUT');
 
         axios.post('/api/campuses/' + this.campus.id, form, this.config)

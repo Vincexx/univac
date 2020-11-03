@@ -12,7 +12,7 @@ class Campus extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'name', 'description', 'image', 'image_path'
+        'name', 'description', 'image', 'image_path', 'certificate'
     ];
 
     public function programs() {

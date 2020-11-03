@@ -19,6 +19,7 @@ class CreateCampusesTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('image_path')->nullable();
+            $table->string('certificate')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

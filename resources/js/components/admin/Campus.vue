@@ -52,13 +52,17 @@
               </router-link>
           </template>
 
-           <!-- <template v-slot:item.id="{ item }">
-              <div>
-                  <router-link :to="{ path : '/admin/campus/' + item.id + '/' + item.name }">
-                      {{ item.programs.length }}
-                  </router-link>
-              </div>
-            </template> -->
+           <template v-slot:item.certificates="{ item }">
+
+              <a :href="item.certificate" target="__blank">
+                <v-icon
+                    color="primary"
+                >
+                    mdi-link
+                </v-icon>
+              </a>
+
+          </template>
       
            <template v-slot:item.actions="{ item }">
 
@@ -102,6 +106,7 @@
           this.campus1.name = ''
           this.campus1.description = ''
           this.campus1.image = ''
+          this.campus1.certificate = ''
           this.showDialog = false
           this.edit = false
       })
@@ -162,6 +167,7 @@
            { text: 'Image', value: 'image' },
            { text: 'Colleges/Campuses', value: 'name' },
            { text: 'Number of Programs', value: 'programs.length' },
+           { text: 'Certificates', value: 'certificates', sortable: false },
           { text: 'Actions', value: 'actions', sortable: false },
         ],
         campusPrograms : [],

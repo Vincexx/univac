@@ -60,7 +60,7 @@ class LoginController extends Controller
             return redirect('admin/dashboard');
 
         } else {
-            return redirect('/');
+            return redirect(route('homepage'));
         }
     }
 }

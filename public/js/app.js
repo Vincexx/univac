@@ -2004,6 +2004,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2014,6 +2018,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.campus1.name = '';
       _this.campus1.description = '';
       _this.campus1.image = '';
+      _this.campus1.certificate = '';
       _this.showDialog = false;
       _this.edit = false;
     });
@@ -2079,6 +2084,10 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: 'Number of Programs',
         value: 'programs.length'
+      }, {
+        text: 'Certificates',
+        value: 'certificates',
+        sortable: false
       }, {
         text: 'Actions',
         value: 'actions',
@@ -3187,6 +3196,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showDialog', 'authUser', 'edit', 'campus_id', 'campus1'],
   data: function data() {
@@ -3194,7 +3208,8 @@ __webpack_require__.r(__webpack_exports__);
       campus2: {
         name: '',
         description: '',
-        image: ''
+        image: '',
+        certificate: ''
       },
       previewImage: '',
       form: new FormData(),
@@ -3233,10 +3248,12 @@ __webpack_require__.r(__webpack_exports__);
       this.form.append('name', this.campus.name);
       this.form.append('description', this.campus.description);
       this.form.append('image', this.file);
+      this.form.append('certificate', this.campus.certificate);
       axios.post('/api/campuses', this.form, this.config).then(function (res) {
         _this.campus.name = '';
         _this.campus.description = '';
         _this.previewImage = '';
+        _this.campus.certificate = '';
 
         _this.$parent.$emit('added_campus', 'Campus Added Successfully');
       })["catch"](function (err) {
@@ -3254,6 +3271,7 @@ __webpack_require__.r(__webpack_exports__);
       form.append('name', this.campus.name);
       form.append('description', this.campus.description);
       form.append('image', this.file);
+      form.append('certificate', this.campus.certificate);
       form.append('_method', 'PUT');
       axios.post('/api/campuses/' + this.campus.id, form, this.config).then(function (res) {
         _this2.previewImage = '';
@@ -60971,6 +60989,31 @@ var render = function() {
                         }
                       },
                       {
+                        key: "item.certificates",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: item.certificate,
+                                  target: "__blank"
+                                }
+                              },
+                              [
+                                _c("v-icon", { attrs: { color: "primary" } }, [
+                                  _vm._v(
+                                    "\n                  mdi-link\n              "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ]
+                        }
+                      },
+                      {
                         key: "item.actions",
                         fn: function(ref) {
                           var item = ref.item
@@ -62369,6 +62412,17 @@ var render = function() {
                             _vm.$set(_vm.campus, "description", $$v)
                           },
                           expression: "campus.description"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: { label: "Link of Certificate" },
+                        model: {
+                          value: _vm.campus.certificate,
+                          callback: function($$v) {
+                            _vm.$set(_vm.campus, "certificate", $$v)
+                          },
+                          expression: "campus.certificate"
                         }
                       }),
                       _vm._v(" "),
