@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>CvSU Internal Development Office</title>
+    <title>CvSU Institutional Development Office</title>
 @endsection
 
 @section('header')

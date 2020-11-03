@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>CvSU Internal Development Office</title>
+    <title>CvSU Institutional Development Office</title>
 @endsection
 
 @section('header')
@@ -59,7 +59,7 @@
           <div class="overlay">
             <div class="text-content">
               <h4>about us</h4>
-              <h2>INSTITUTION DEVELOPMENT OFFICE</h2>
+              <h2>INSTITUTIONAL DEVELOPMENT OFFICE</h2>
             </div>
           </div>
         </div>
