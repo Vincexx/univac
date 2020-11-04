@@ -62,8 +62,8 @@
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                         
-                    <div class="email">
-                        <input type="email" name="email" placeholder="Email Address" class="text-box @error('email') is-invalid @enderror"
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Address" class="form-control @error('email') is-invalid @enderror"
                         value="{{ old('email') }}" required autocomplete="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -72,8 +72,8 @@
                         @enderror
                     </div>
 
-                    <div class="password">
-                        <input type="password" name="password" placeholder="Password" class="text-box @error('password') is-invalid @enderror"
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror"
                         value="{{ old('password') }}" required autocomplete="password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -82,7 +82,6 @@
                         @enderror
                     </div>
 
-                    
                     <input type="submit" value="LOGIN" class="btn btn-success">
                 </form>
             
@@ -123,11 +122,13 @@
 
     .login-card form {
         margin: 20px 0;
+        
     }
-    .login-card .text-box{
+    .login-card .form-control{
         width: 300px;
         margin:5px 0;
         padding: 10px 5px;
+        margin-left: 100px;
     }
 
     .login-card .btn-success{
