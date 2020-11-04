@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/IDO', 'FrontendController@showAllCampuses')->name('homepage');
-Route::get('/IDO/campus/{campus}/programs', 'FrontendController@showCampusPrograms')->name('campusPrograms');
+Route::get('/', 'FrontendController@showAllCampuses')->name('homepage');
+Route::get('/campus/{campus}/programs', 'FrontendController@showCampusPrograms')->name('campusPrograms');
 
 Auth::routes(); 
 

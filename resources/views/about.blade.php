@@ -25,11 +25,15 @@
                         <span class="sr-only">(current)</span>
                       </a>
                   </li>
-                  {{-- @if (auth()->user()->role == 'admin')
-                      <li class="nav-item">
-                          <a class="nav-link" href="admin/dashboard">Dashboard</a>
-                      </li>
-                  @endif --}}
+                
+                  @if (Auth::check())
+                      @if (Auth::user()->role == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin/dashboard">Dashboard</a>
+                        </li>
+                      @endif
+                  @endif
+
                   @auth
                       <li class="nav-item">
                           <form action="{{ route('logout') }}" method="POST" id="myform">

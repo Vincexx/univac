@@ -16,9 +16,9 @@ class UserSeeder extends Seeder
 
         if(!$user) {
             User::create([
-                'name' => 'CvSU Main',
-                'email' => 'cvsu@gmail.com',
-                'password' => Hash::make('password'),
+                'name' => 'CvSU IDO',
+                'email' => 'ido2020@cvsu.edu.ph',
+                'password' => Hash::make('cvsuido2020'),
                 'role' => 'admin',
             ]);
 

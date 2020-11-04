@@ -2359,13 +2359,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       axios.post('/logout').then(function (res) {
-        window.location.href = '/IDO';
+        window.location.href = '/';
       })["catch"](function (err) {
         return console.log(err);
       });
     },
     homepage: function homepage() {
-      window.location.href = "/IDO";
+      window.location.href = "/";
     }
   }
 });

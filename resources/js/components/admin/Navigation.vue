@@ -131,11 +131,11 @@ export default {
         logout() {
             axios.post('/logout')
             .then(res => {
-                window.location.href = '/IDO';
+                window.location.href = '/';
             }).catch(err => console.log(err))
         },
         homepage() {
-          window.location.href = "/IDO"
+          window.location.href = "/"
         }
     }
 }
