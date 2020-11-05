@@ -3201,6 +3201,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showDialog', 'authUser', 'edit', 'campus_id', 'campus1'],
   data: function data() {
@@ -3219,7 +3221,8 @@ __webpack_require__.r(__webpack_exports__);
           'Authorization': 'Bearer ' + this.authUser.api_token,
           'Accept': 'application/json'
         }
-      }
+      },
+      errorName: ''
     };
   },
   computed: {
@@ -3257,7 +3260,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$parent.$emit('added_campus', 'Campus Added Successfully');
       })["catch"](function (err) {
-        return console.log(err);
+        _this.errorName = err.response.data.errors.name.toString();
       });
     },
     fileChange: function fileChange(e) {
@@ -3531,6 +3534,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showDialog', 'edit', 'program1'],
   data: function data() {
@@ -3538,7 +3543,8 @@ __webpack_require__.r(__webpack_exports__);
       program2: {
         id: '',
         name: ''
-      }
+      },
+      errorName: ''
     };
   },
   computed: {
@@ -3560,6 +3566,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     hideDialog: function hideDialog() {
       this.program.name = '';
+      this.errorName = '';
       this.$parent.$emit('hide_dialog');
     },
     addProgram: function addProgram() {
@@ -3570,7 +3577,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$parent.$emit('program_added', 'Program added successful.');
       })["catch"](function (err) {
-        return console.log(err);
+        _this.errorName = err.response.data.errors.name.toString();
       });
     },
     updateProgram: function updateProgram() {
@@ -3581,7 +3588,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$parent.$emit('program_added', 'Program updated successful.');
       })["catch"](function (err) {
-        return console.log(err);
+        return console.log();
       });
     }
   }
@@ -62388,8 +62395,10 @@ var render = function() {
                       _c("v-text-field", {
                         attrs: {
                           name: "name",
-                          label: "Name of Campus",
-                          id: "id"
+                          label: "Name of Campus*",
+                          id: "id",
+                          error: _vm.errorName ? true : false,
+                          "error-messages": _vm.errorName
                         },
                         model: {
                           value: _vm.campus.name,
@@ -62404,7 +62413,7 @@ var render = function() {
                         attrs: {
                           clearable: "",
                           "clear-icon": "x",
-                          label: "Description (Nullable)"
+                          label: "Description"
                         },
                         model: {
                           value: _vm.campus.description,
@@ -62853,7 +62862,9 @@ var render = function() {
                         attrs: {
                           name: "name",
                           label: "Name of the Program",
-                          id: "id"
+                          id: "id",
+                          error: _vm.errorName ? true : false,
+                          "error-messages": _vm.errorName
                         },
                         model: {
                           value: _vm.program.name,

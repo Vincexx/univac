@@ -9,7 +9,7 @@ use App\Campus;
 class FrontendController extends Controller
 {
     public function showAllCampuses() {
-        return view('welcome')->with('campuses', Campus::all());
+        return view('welcome')->with('campuses', Campus::orderBy('name')->get());
     }
 
     public function about() {

@@ -126,8 +126,6 @@
     }
     .login-card .form-control{
         width: 300px;
-        margin:5px 0;
-        padding: 10px 5px;
         margin-left: 100px;
     }
 

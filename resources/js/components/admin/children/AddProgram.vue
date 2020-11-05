@@ -18,6 +18,8 @@
                 label="Name of the Program"
                 id="id"
                 v-model="program.name"
+                :error="errorName ? true : false"
+                :error-messages="errorName"
             ></v-text-field> 
 
         </v-card-text>
@@ -58,6 +60,7 @@
             id : '',
             name : ''
         },
+        errorName : '',
       }
       
     },
@@ -82,6 +85,7 @@
     methods : {
         hideDialog() {
             this.program.name = ''
+            this.errorName = ''
             this.$parent.$emit('hide_dialog')
         },
         addProgram() {
@@ -89,14 +93,16 @@
             .then(res => {
                 this.program.name = ''
                 this.$parent.$emit('program_added', 'Program added successful.')
-            }).catch(err => console.log(err))
+            }).catch(err => {
+              this.errorName = err.response.data.errors.name.toString()
+            })
         },
         updateProgram() {
             axios.put('/api/programs/' + this.program.id, this.program)
             .then(res => {
                 this.program.name = ''
                 this.$parent.$emit('program_added', 'Program updated successful.')
-            }).catch(err => console.log(err))
+            }).catch(err => console.log())
         }
     }
     

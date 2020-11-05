@@ -15,9 +15,11 @@
 
             <v-text-field
                 name="name"
-                label="Name of Campus"
+                label="Name of Campus*"
                 id="id"
                 v-model="campus.name"
+                :error="errorName ? true : false"
+                :error-messages="errorName"
             ></v-text-field>
 
             
@@ -25,7 +27,7 @@
             <v-textarea
             clearable
             clear-icon="x"
-            label="Description (Nullable)"
+            label="Description"
             v-model="campus.description"   
             ></v-textarea>
 
@@ -107,6 +109,7 @@
               'Accept' : 'application/json',
             } 
         },
+        errorName : ''
       }
       
     },
@@ -143,7 +146,9 @@
           this.previewImage = ''
           this.campus.certificate = ''
           this.$parent.$emit('added_campus', 'Campus Added Successfully')
-        }).catch(err => console.log(err))
+        }).catch(err => {
+          this.errorName = err.response.data.errors.name.toString()
+        })
       },
       fileChange(e) {
         this.file = e

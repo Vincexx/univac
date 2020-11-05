@@ -21,7 +21,7 @@ class CampusesController extends Controller
      */
     public function index()
     {
-        $campuses = Campus::with('programs')->get();
+        $campuses = Campus::with('programs')->orderBy('name')->get();
         return response()->json($campuses);
     }
 

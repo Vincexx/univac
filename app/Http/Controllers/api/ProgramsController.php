@@ -15,7 +15,7 @@ class ProgramsController extends Controller
      */
     public function index()
     {
-        return response()->json(Program::all(), 200);
+        return response()->json(Program::orderBy('name')->get(), 200);
     }
 
     /**
@@ -39,7 +39,7 @@ class ProgramsController extends Controller
         $data = $request->only(['name']);
 
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:programs',
         ]);
 
         $program = Program::create([
