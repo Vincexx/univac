@@ -56,7 +56,7 @@
         <div class="overlay">
             <div class="container">
                 <div class="row">
-                <div class="col-md-4 offset-4">
+                <div class="col-md-12 justify-content-center">
                     <div class="text-content">
                     <h2 style="
                     font-weight: bold; 
