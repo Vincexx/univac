@@ -41,7 +41,7 @@ class ProgramsPerCampusesController extends Controller
             'name' => 'required',
             'level' => 'required',
             'validity' => 'required',
-            'link' => 'required',
+            'link' => '',
         ]);
 
         
