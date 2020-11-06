@@ -2172,11 +2172,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['authUser'],
   data: function data() {
     return {
       users: [],
       campuses: [],
-      programs: []
+      programs: [],
+      config: {
+        'headers': {
+          'Authorization': 'Bearer ' + this.authUser.api_token,
+          'Accept': 'application/json'
+        }
+      }
     };
   },
   created: function created() {
@@ -2471,6 +2478,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$on('program_added', function (message) {
       _this.fetchPrograms();
 
+      _this.edit = false;
       _this.message = message;
       _this.snackbar = true;
       _this.showDialog = false;
@@ -2528,7 +2536,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteProgram: function deleteProgram(id) {
       var _this3 = this;
 
-      axios["delete"]('/api/programs/' + id).then(function (res) {
+      axios["delete"]('/api/programs/' + id, this.config).then(function (res) {
         _this3.fetchPrograms();
 
         _this3.message = "Selected program deleted successfully";
@@ -2540,7 +2548,7 @@ __webpack_require__.r(__webpack_exports__);
     editProgram: function editProgram(id) {
       var _this4 = this;
 
-      axios.get('/api/programs/' + id).then(function (res) {
+      axios.get('/api/programs/' + id, this.config).then(function (res) {
         _this4.program = res.data;
       })["catch"](function (err) {
         return console.log(err);
@@ -2666,9 +2674,15 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AddCampusProgram: _admin_children_AddCampusProgram__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['id', 'campus'],
+  props: ['id', 'campus', 'authUser'],
   data: function data() {
     return {
+      config: {
+        'headers': {
+          'Authorization': 'Bearer ' + this.authUser.api_token,
+          'Accept': 'application/json'
+        }
+      },
       edit: false,
       snackbar: false,
       message: '',
@@ -2708,7 +2722,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCampusPrograms: function fetchCampusPrograms() {
       var _this2 = this;
 
-      axios.get('/api/campuses/' + this.id + '/programs').then(function (res) {
+      axios.get('/api/campuses/' + this.id + '/programs', this.config).then(function (res) {
         return _this2.campusPrograms = res.data;
       })["catch"](function (err) {
         return console.log(err);
@@ -2717,7 +2731,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteProgram: function deleteProgram(id) {
       var _this3 = this;
 
-      axios["delete"]('/api/programs-per-campuses/' + id).then(function (res) {
+      axios["delete"]('/api/programs-per-campuses/' + id, this.config).then(function (res) {
         _this3.snackbar = true;
         _this3.message = "Program deleted successfully.";
 
@@ -2729,7 +2743,7 @@ __webpack_require__.r(__webpack_exports__);
     editProgram: function editProgram(id) {
       var _this4 = this;
 
-      axios.get('/api/programs-per-campuses/' + id).then(function (res) {
+      axios.get('/api/programs-per-campuses/' + id, this.config).then(function (res) {
         _this4.campusProgram1 = res.data;
       })["catch"](function (err) {
         return console.log(err);
@@ -3387,7 +3401,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['showDialog', 'campusID', 'edit', 'campusProgram1'],
+  props: ['showDialog', 'campusID', 'edit', 'campusProgram1', 'authUser'],
   data: function data() {
     return {
       levels: ['Level I', 'Level II', 'Level III', 'Level IV'],
@@ -3402,6 +3416,12 @@ __webpack_require__.r(__webpack_exports__);
         'level': '',
         'validity': new Date().toISOString().substr(0, 10),
         'link': ''
+      },
+      config: {
+        'headers': {
+          'Authorization': 'Bearer ' + this.authUser.api_token,
+          'Accept': 'application/json'
+        }
       }
     };
   },
@@ -3428,7 +3448,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPrograms: function fetchPrograms() {
       var _this = this;
 
-      axios.get('/api/programs').then(function (res) {
+      axios.get('/api/programs', this.config).then(function (res) {
         return _this.programs = res.data;
       })["catch"](function (err) {
         return console.log(err);
@@ -3445,7 +3465,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.program.campus_id = this.campusID;
-      axios.post('/api/programs-per-campuses', this.program).then(function (res) {
+      axios.post('/api/programs-per-campuses', this.program, this.config).then(function (res) {
         _this2.program.name = '';
         _this2.program.level = '';
         _this2.program.validity = '';
@@ -3459,7 +3479,7 @@ __webpack_require__.r(__webpack_exports__);
     updateProgram: function updateProgram() {
       var _this3 = this;
 
-      axios.put('/api/programs-per-campuses/' + this.program.id, this.program).then(function (res) {
+      axios.put('/api/programs-per-campuses/' + this.program.id, this.program, this.config).then(function (res) {
         _this3.program.name = '';
         _this3.program.level = '';
         _this3.program.validity = '';
@@ -3537,14 +3557,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['showDialog', 'edit', 'program1'],
+  props: ['showDialog', 'edit', 'program1', 'authUser'],
   data: function data() {
     return {
       program2: {
         id: '',
         name: ''
       },
-      errorName: ''
+      errorName: '',
+      config: {
+        'headers': {
+          'Authorization': 'Bearer ' + this.authUser.api_token,
+          'Accept': 'application/json'
+        }
+      }
     };
   },
   computed: {
@@ -3572,7 +3598,7 @@ __webpack_require__.r(__webpack_exports__);
     addProgram: function addProgram() {
       var _this = this;
 
-      axios.post('/api/programs', this.program).then(function (res) {
+      axios.post('/api/programs', this.program, this.config).then(function (res) {
         _this.program.name = '';
 
         _this.$parent.$emit('program_added', 'Program added successful.');
@@ -3583,7 +3609,7 @@ __webpack_require__.r(__webpack_exports__);
     updateProgram: function updateProgram() {
       var _this2 = this;
 
-      axios.put('/api/programs/' + this.program.id, this.program).then(function (res) {
+      axios.put('/api/programs/' + this.program.id, this.program, this.config).then(function (res) {
         _this2.program.name = '';
 
         _this2.$parent.$emit('program_added', 'Program updated successful.');
@@ -61674,7 +61700,8 @@ var render = function() {
         attrs: {
           showDialog: _vm.showDialog,
           program1: _vm.program,
-          edit: _vm.edit
+          edit: _vm.edit,
+          authUser: _vm.authUser
         }
       })
     ],
@@ -61900,7 +61927,8 @@ var render = function() {
           showDialog: _vm.showDialog,
           campusID: _vm.id,
           edit: _vm.edit,
-          campusProgram1: _vm.campusProgram1
+          campusProgram1: _vm.campusProgram1,
+          authUser: _vm.authUser
         }
       })
     ],

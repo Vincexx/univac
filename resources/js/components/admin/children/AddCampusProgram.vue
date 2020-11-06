@@ -88,7 +88,7 @@
 
 <script>
   export default {
-    props : ['showDialog', 'campusID', 'edit', 'campusProgram1'],
+    props : ['showDialog', 'campusID', 'edit', 'campusProgram1', 'authUser'],
     data () {
       return {
         levels: [
@@ -109,7 +109,12 @@
           'validity' : new Date().toISOString().substr(0, 10),
           'link' : '',
         },
-        
+        config : { 
+          'headers': { 
+            'Authorization': 'Bearer ' + this.authUser.api_token,
+            'Accept' : 'application/json',
+          }
+        },
       }
       
     },
@@ -135,7 +140,7 @@
     },
     methods : {
         fetchPrograms() {
-            axios.get('/api/programs')
+            axios.get('/api/programs', this.config)
             .then(res => this.programs = res.data)
             .catch(err => console.log(err))
         },
@@ -148,7 +153,7 @@
         },
         addProgram() {
             this.program.campus_id = this.campusID 
-            axios.post('/api/programs-per-campuses', this.program)
+            axios.post('/api/programs-per-campuses', this.program, this.config)
             .then(res => {
                 this.program.name = ''
                 this.program.level = ''
@@ -158,7 +163,7 @@
             }).catch(err => console.log(err))
         },
         updateProgram() {
-            axios.put('/api/programs-per-campuses/' + this.program.id, this.program)
+            axios.put('/api/programs-per-campuses/' + this.program.id, this.program, this.config)
             .then(res => {
                 this.program.name = ''
                 this.program.level = ''

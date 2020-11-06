@@ -72,7 +72,7 @@
         </v-card>
       </v-container>
     </v-app>
-    <AddProgram :showDialog="showDialog" :program1="program" :edit="edit" />
+    <AddProgram :showDialog="showDialog" :program1="program" :edit="edit" :authUser="authUser" />
   </div>
 </template>
 
@@ -87,6 +87,7 @@
 
       this.$on('program_added', (message) => {
           this.fetchPrograms()
+          this.edit = false
           this.message = message
           this.snackbar = true
           this.showDialog = false
@@ -135,7 +136,7 @@
         .catch(err => console.log(err))
       },
       deleteProgram(id) {
-        axios.delete('/api/programs/' + id)
+        axios.delete('/api/programs/' + id, this.config)
         .then(res => {
           this.fetchPrograms()
           this.message = "Selected program deleted successfully"
@@ -143,7 +144,7 @@
         }).catch(err => console.log(err))
       },
       editProgram(id) {
-        axios.get('/api/programs/' + id)
+        axios.get('/api/programs/' + id, this.config)
         .then(res => {
           this.program = res.data
         })

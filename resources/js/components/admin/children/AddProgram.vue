@@ -52,7 +52,7 @@
 
 <script>
   export default {
-    props : ['showDialog', 'edit', 'program1'],
+    props : ['showDialog', 'edit', 'program1', 'authUser'],
     data () {
       return {
       
@@ -61,6 +61,12 @@
             name : ''
         },
         errorName : '',
+         config : { 
+            'headers': { 
+              'Authorization': 'Bearer ' + this.authUser.api_token,
+              'Accept' : 'application/json',
+            } 
+        },
       }
       
     },
@@ -89,7 +95,7 @@
             this.$parent.$emit('hide_dialog')
         },
         addProgram() {
-            axios.post('/api/programs', this.program)
+            axios.post('/api/programs', this.program, this.config)
             .then(res => {
                 this.program.name = ''
                 this.$parent.$emit('program_added', 'Program added successful.')
@@ -98,7 +104,7 @@
             })
         },
         updateProgram() {
-            axios.put('/api/programs/' + this.program.id, this.program)
+            axios.put('/api/programs/' + this.program.id, this.program, this.config)
             .then(res => {
                 this.program.name = ''
                 this.$parent.$emit('program_added', 'Program updated successful.')

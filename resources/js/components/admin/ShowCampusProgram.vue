@@ -79,7 +79,7 @@
         </v-card>
       </v-container>
     </v-app>
-    <AddCampusProgram :showDialog="showDialog" :campusID="id" :edit="edit" :campusProgram1="campusProgram1" />
+    <AddCampusProgram :showDialog="showDialog" :campusID="id" :edit="edit" :campusProgram1="campusProgram1" :authUser="authUser" />
   </div>
 </template>
 
@@ -104,9 +104,15 @@
     components : {
       AddCampusProgram
     },
-    props : ['id', 'campus'],
+    props : ['id', 'campus', 'authUser'],
     data () {
       return {
+        config : { 
+          'headers': { 
+            'Authorization': 'Bearer ' + this.authUser.api_token,
+            'Accept' : 'application/json',
+          }
+        },
         edit : false,
         snackbar: false,
         message: '',
@@ -126,7 +132,8 @@
           'level' : '',
           'validity' : '',
           'link' : '',
-        }
+        },
+        
       }
     },
     created() {
@@ -134,12 +141,12 @@
     },
     methods : {
       fetchCampusPrograms() {
-        axios.get('/api/campuses/' + this.id + '/programs')
+        axios.get('/api/campuses/' + this.id + '/programs', this.config)
         .then(res => this.campusPrograms = res.data)
         .catch(err => console.log(err))
       },
       deleteProgram(id) {
-        axios.delete('/api/programs-per-campuses/' + id)
+        axios.delete('/api/programs-per-campuses/' + id, this.config)
         .then(res => {
           this.snackbar = true
           this.message = "Program deleted successfully."
@@ -148,7 +155,7 @@
         .catch(err => console.log(err))
       },
       editProgram(id){
-        axios.get('/api/programs-per-campuses/' + id)
+        axios.get('/api/programs-per-campuses/' + id, this.config)
         .then(res => {
           this.campusProgram1 = res.data
         })

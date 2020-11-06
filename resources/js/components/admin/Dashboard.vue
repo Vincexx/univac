@@ -39,11 +39,18 @@
 
 <script>
 export default {
+    props : ['authUser'],
     data () {
         return {
             users : [],
             campuses : [],
             programs : [],
+            config : { 
+            'headers': { 
+              'Authorization': 'Bearer ' + this.authUser.api_token,
+              'Accept' : 'application/json',
+            } 
+        },
         }
     },
     created() {
