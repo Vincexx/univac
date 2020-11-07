@@ -50,7 +50,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        if($user->role == "admin") {
+        if($user->role == "Admin") {
             $token = Str::random(80);
 
             $user->forceFill([

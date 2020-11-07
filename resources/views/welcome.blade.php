@@ -26,7 +26,7 @@
                   </li>
 
                   @if (Auth::check())
-                      @if (Auth::user()->role == 'admin')
+                      @if (Auth::user()->role == 'Admin')
                         <li class="nav-item">
                             <a class="nav-link" href="admin/dashboard">Dashboard</a>
                         </li>

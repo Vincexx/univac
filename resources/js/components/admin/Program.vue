@@ -83,6 +83,7 @@
 
       this.$on('hide_dialog', () => {
           this.showDialog = false
+          this.edit = false
       })
 
       this.$on('program_added', (message) => {

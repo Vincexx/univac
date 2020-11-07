@@ -25,6 +25,52 @@
       <v-container>
         <h1>Trash</h1>
 
+        <v-card class="my-2">
+          <v-card-title>
+            
+            Users
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+            
+          </v-card-title>     
+
+          <v-data-table
+            :headers="headers_users"
+            :items="trash_users"
+            :search="search"
+          >
+
+          
+           <template v-slot:item.actions="{ item }">
+              <v-icon
+                  small
+                  class="mr-2"
+                  color="primary"
+                  @click="restoreUser(item.id)"
+              >
+                  mdi-restore 
+              </v-icon>
+
+              <v-icon
+                  small
+                  class="mr-2"
+                  color="red"
+                  @click="deleteUser(item.id)"
+              >
+                  mdi-delete 
+              </v-icon>
+              
+          </template>
+          
+          </v-data-table>
+        </v-card>
+
          <v-card class="my-2">
           <v-card-title>
             
@@ -142,6 +188,7 @@
         search: '',
         trash_campuses : [],
         trash_programs : [],
+        trash_users : [],
         headers_campus: [
           { text: 'Image', value: 'image' },
           { text: 'College/Campuses', value: 'name' },
@@ -153,12 +200,20 @@
           { text: 'Program', value: 'name' },
           { text: 'Actions', value: 'actions', sortable: false },
         ],
+
+        headers_users: [
+          { text: 'Name', value: 'name' },
+          { text: 'Email', value: 'email' },
+          { text: 'Role', value: 'role' },
+          { text: 'Actions', value: 'actions', sortable: false },
+        ],
         
       }
     },
     created() {
       this.fetchTrashCampuses()
       this.fetchTrashPrograms()
+      this.fetchTrashUsers();
       
     },
     methods : {
@@ -170,6 +225,11 @@
       fetchTrashPrograms() {
         axios.get('/api/trash-programs', this.config)
         .then(res => this.trash_programs = res.data)
+        .catch(err => console.log(err))
+      },
+      fetchTrashUsers() {
+        axios.get('/api/trash-users', this.config)
+        .then(res => this.trash_users = res.data)
         .catch(err => console.log(err))
       },
       restoreCampus(id) {
@@ -190,6 +250,15 @@
         })
         .catch(err => console.log(err))
       },
+      restoreUser(id) {
+        axios.patch('/api/trash-users/' + id, this.config)
+        .then(res => {
+          this.snackbar = true
+          this.message = res.data.message
+          this.fetchTrashUsers()
+        })
+        .catch(err => console.log(err))
+      },
       deleteCampus(id) {
         axios.delete('/api/trash-campuses/' + id, this.config)
         .then(res => {
@@ -205,6 +274,15 @@
           this.snackbar = true
           this.message = res.data.message
           this.fetchTrashPrograms()
+        })
+        .catch(err => console.log(err))
+      },
+      deleteUser(id) {
+        axios.delete('/api/trash-users/' + id, this.config)
+        .then(res => {
+          this.snackbar = true
+          this.message = res.data.message
+          this.fetchTrashUsers()
         })
         .catch(err => console.log(err))
       }

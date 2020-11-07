@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,13 +16,13 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', 'FrontendController@showAllCampuses')->name('homepage');
-Route::get('/campus/{campus}/programs', 'FrontendController@showCampusPrograms')->name('campusPrograms');
+Route::middleware('auth')->get('/campus/{campus}/programs', 'FrontendController@showCampusPrograms')->name('campusPrograms');
 
 Auth::routes(); 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('auth')->get('admin/{any}', function () {
+Route::middleware('authAdmin')->get('admin/{any}', function () {
     return view('admin.dashboard');
 })->where('any', '[\/\w\.-]*')->name('admin-dashboard');
 

@@ -19,14 +19,14 @@ class UserSeeder extends Seeder
                 'name' => 'CvSU IDO',
                 'email' => 'ido2020@cvsu.edu.ph',
                 'password' => Hash::make('cvsuido2020'),
-                'role' => 'admin',
+                'role' => 'Admin',
             ]);
 
             User::create([
                 'name' => 'Vince Pitagan',
                 'email' => 'vince@gmail.com',
                 'password' => Hash::make('password'),
-                'role' => 'user',
+                'role' => 'Accreditor',
             ]);
         }
     }

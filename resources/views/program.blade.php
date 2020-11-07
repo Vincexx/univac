@@ -24,9 +24,9 @@
                       <a class="nav-link" href="{{ route('about') }}">About Us
                       </a>
                   </li>
-                  @if (Auth::user()->role == 'admin')
+                  @if (Auth::user()->role == 'Admin')
                       <li class="nav-item">
-                          <a class="nav-link" href="admin/dashboard">Dashboard</a>
+                          <a class="nav-link" href="/admin/dashboard">Dashboard</a>
                       </li>
                   @endif
                   @auth
@@ -96,7 +96,7 @@
                             <td>{{ $program->level }}</td>
                             <td>{{ $program->validity }}</td>
                             <td>
-                                <a href="{{ $program->link }}"><i class="fa fa-link text-success" aria-hidden="true"></i></a>
+                                <a href="{{ $program->link }}" target="__blank"><i class="fa fa-link text-success" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach

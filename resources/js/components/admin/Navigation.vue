@@ -18,15 +18,17 @@
           
           <v-sheet
             color="grey lighten-5"
-            class="pa-4 text-center"
+            class="pa-7 text-center"
         >
-            <v-avatar
-            class="mb-4"
-            color="green darken-1"
-            size="64"
-            ></v-avatar>
+             <v-avatar>
+              <img
+                src="/img/logo.png"
+                alt="John"
+                class="mb-1"
+              >
+            </v-avatar>
 
-            <div>Administrator</div>
+            <div>{{ authuser.name }}</div>
         </v-sheet>
 
 
