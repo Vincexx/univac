@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Campus;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class CampusesController extends Controller
 {
@@ -46,11 +47,15 @@ class CampusesController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:campuses',
             'description' => '',
-            'image' => 'image',
+            'image' => 'image|max:5000',
             'certificate' => ''
         ]);
 
-        $image = $request->image->store('campuses_images');
+        if($request->hasFile('image')) {
+            $image = $request->image->store('campuses_images');
+            $img = Image::make(public_path('storage/' . $image))->fit(1200, 687);
+            $img->save();
+        }
 
         $campus = Campus::create([      
             'name' => $request->name,
@@ -58,11 +63,14 @@ class CampusesController extends Controller
             'image' => $image,
             'certificate' => $request->certificate,
         ]); 
+        
 
         return response()->json([
             'message' => 'Campus Created Successfully.',
             'campus' => $campus
         ]);
+
+
 
     }
 
@@ -107,6 +115,8 @@ class CampusesController extends Controller
         if($request->hasFile('image')) {
             Storage::disk()->delete($campus->image);
             $image = $request->image->store('campuses_images');
+            $img = Image::make(public_path('storage/' . $image))->fit(1200, 687);
+            $img->save();
             $campus->image = $image;
             $campus->save();
         }
