@@ -151,8 +151,10 @@
         })
       },
       fileChange(e) {
-        this.file = e
-        this.previewImage = URL.createObjectURL(e)
+        if(e) {
+          this.file = e
+          this.previewImage = URL.createObjectURL(e)
+        }
       },
       updateCampus() {
         const form = new FormData()

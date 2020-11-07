@@ -180,6 +180,12 @@
     props : ['authUser'],
     data () {
       return {
+        config : { 
+            'headers': { 
+              'Authorization': 'Bearer ' + this.authUser.api_token,
+              'Accept' : 'application/json',
+            } 
+        },
         edit : false,
         snackbar: false,
         message: '',

@@ -17,6 +17,8 @@
                 label="Name *"
                 v-model="user.name"
                 prepend-icon="mdi-account"
+                :error="error.name ? true : false"
+                :error-messages="error.name"
             ></v-text-field> 
 
             <v-text-field
@@ -25,6 +27,8 @@
                 label="Email *"
                 v-model="user.email"
                 prepend-icon="mdi-email"
+                :error="error.email ? true : false"
+                :error-messages="error.email"
             ></v-text-field> 
 
             <v-select
@@ -33,6 +37,8 @@
                 dense
                 v-model="user.role"
                 prepend-icon="mdi-account-group"
+                :error="error.role ? true : false"
+                :error-messages="error.role"
             ></v-select>
 
             <v-text-field
@@ -44,6 +50,8 @@
                 :append-icon="hide ? 'mdi-eye-off' : 'mdi-eye'"
                 @click:append="hide = !hide"
                 v-model="user.password"
+                :error="error.password ? true : false"
+                :error-messages="error.password"
             ></v-text-field> 
 
         </v-card-text>
@@ -89,12 +97,17 @@
             role : '',
             password : ''
         },
-        errorName : '',
-         config : { 
-            'headers': { 
-              'Authorization': 'Bearer ' + this.authUser.api_token,
-              'Accept' : 'application/json',
-            } 
+        error : {
+          'name' : '',
+          'email' : '',
+          'role' : '',
+          'password' : ''
+        },
+        config : { 
+          'headers': { 
+            'Authorization': 'Bearer ' + this.authUser.api_token,
+            'Accept' : 'application/json',
+          } 
         },
       }
       
@@ -123,6 +136,10 @@
             this.user.email = ''
             this.user.role = ''
             this.user.password = ''
+            this.error.name = ''
+            this.error.email = ''
+            this.error.role = ''
+            this.error.password = ''
             this.$parent.$emit('hide_dialog')
         },
         registerUser() {
@@ -132,9 +149,29 @@
                 this.user.email = ''
                 this.user.role = ''
                 this.user.password = ''
+                this.error.name = ''
+                this.error.email = ''
+                this.error.role = ''
+                this.error.password = ''
                 this.$parent.$emit('user_added', res.data.message)  
             }).catch(err => {
-                console.log(err);
+                let errors = err.response.data.errors
+                if(errors.name) {
+                  this.error.name = errors.name.toString()
+                }
+
+                if(errors.email) {
+                  this.error.email = errors.email.toString()
+                }
+
+                if(errors.role) {
+                  this.error.role = errors.role.toString()
+                }
+
+                if(errors.password) {
+                  this.error.password = errors.password.toString()
+                }
+                 
             })
         },
         updateUser() {

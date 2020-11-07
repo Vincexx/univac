@@ -2947,6 +2947,12 @@ __webpack_require__.r(__webpack_exports__);
   props: ['authUser'],
   data: function data() {
     return {
+      config: {
+        'headers': {
+          'Authorization': 'Bearer ' + this.authUser.api_token,
+          'Accept': 'application/json'
+        }
+      },
       edit: false,
       snackbar: false,
       message: '',
@@ -3461,8 +3467,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     fileChange: function fileChange(e) {
-      this.file = e;
-      this.previewImage = URL.createObjectURL(e);
+      if (e) {
+        this.file = e;
+        this.previewImage = URL.createObjectURL(e);
+      }
     },
     updateCampus: function updateCampus() {
       var _this2 = this;
@@ -3890,6 +3898,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showDialog', 'authUser', 'user1', 'edit'],
   data: function data() {
@@ -3903,7 +3919,12 @@ __webpack_require__.r(__webpack_exports__);
         role: '',
         password: ''
       },
-      errorName: '',
+      error: {
+        'name': '',
+        'email': '',
+        'role': '',
+        'password': ''
+      },
       config: {
         'headers': {
           'Authorization': 'Bearer ' + this.authUser.api_token,
@@ -3934,6 +3955,10 @@ __webpack_require__.r(__webpack_exports__);
       this.user.email = '';
       this.user.role = '';
       this.user.password = '';
+      this.error.name = '';
+      this.error.email = '';
+      this.error.role = '';
+      this.error.password = '';
       this.$parent.$emit('hide_dialog');
     },
     registerUser: function registerUser() {
@@ -3944,10 +3969,30 @@ __webpack_require__.r(__webpack_exports__);
         _this.user.email = '';
         _this.user.role = '';
         _this.user.password = '';
+        _this.error.name = '';
+        _this.error.email = '';
+        _this.error.role = '';
+        _this.error.password = '';
 
         _this.$parent.$emit('user_added', res.data.message);
       })["catch"](function (err) {
-        console.log(err);
+        var errors = err.response.data.errors;
+
+        if (errors.name) {
+          _this.error.name = errors.name.toString();
+        }
+
+        if (errors.email) {
+          _this.error.email = errors.email.toString();
+        }
+
+        if (errors.role) {
+          _this.error.role = errors.role.toString();
+        }
+
+        if (errors.password) {
+          _this.error.password = errors.password.toString();
+        }
       });
     },
     updateUser: function updateUser() {
@@ -62761,22 +62806,18 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "mx-2 my-2",
-                      attrs: { fab: "", dark: "", color: "indigo" }
+                      attrs: { fab: "", dark: "", color: "indigo" },
+                      on: {
+                        click: function($event) {
+                          $event.stopPropagation()
+                          _vm.showDialog = true
+                        }
+                      }
                     },
                     [
-                      _c(
-                        "v-icon",
-                        {
-                          attrs: { dark: "" },
-                          on: {
-                            click: function($event) {
-                              $event.stopPropagation()
-                              _vm.showDialog = true
-                            }
-                          }
-                        },
-                        [_vm._v("mdi-plus")]
-                      )
+                      _c("v-icon", { attrs: { dark: "" } }, [
+                        _vm._v("mdi-plus")
+                      ])
                     ],
                     1
                   ),
@@ -63524,7 +63565,9 @@ var render = function() {
                         attrs: {
                           name: "name",
                           label: "Name *",
-                          "prepend-icon": "mdi-account"
+                          "prepend-icon": "mdi-account",
+                          error: _vm.error.name ? true : false,
+                          "error-messages": _vm.error.name
                         },
                         model: {
                           value: _vm.user.name,
@@ -63540,7 +63583,9 @@ var render = function() {
                           type: "email",
                           name: "email",
                           label: "Email *",
-                          "prepend-icon": "mdi-email"
+                          "prepend-icon": "mdi-email",
+                          error: _vm.error.email ? true : false,
+                          "error-messages": _vm.error.email
                         },
                         model: {
                           value: _vm.user.email,
@@ -63556,7 +63601,9 @@ var render = function() {
                           items: _vm.roles,
                           label: !_vm.edit ? "Select Role" : _vm.user.role,
                           dense: "",
-                          "prepend-icon": "mdi-account-group"
+                          "prepend-icon": "mdi-account-group",
+                          error: _vm.error.role ? true : false,
+                          "error-messages": _vm.error.role
                         },
                         model: {
                           value: _vm.user.role,
@@ -63581,7 +63628,9 @@ var render = function() {
                           name: "password",
                           label: "Password *",
                           "prepend-icon": "mdi-account",
-                          "append-icon": _vm.hide ? "mdi-eye-off" : "mdi-eye"
+                          "append-icon": _vm.hide ? "mdi-eye-off" : "mdi-eye",
+                          error: _vm.error.password ? true : false,
+                          "error-messages": _vm.error.password
                         },
                         on: {
                           "click:append": function($event) {
@@ -123582,14 +123631,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/admin/children/AddUser.vue ***!
   \************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddUser_vue_vue_type_template_id_b101aeb2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddUser.vue?vue&type=template&id=b101aeb2& */ "./resources/js/components/admin/children/AddUser.vue?vue&type=template&id=b101aeb2&");
 /* harmony import */ var _AddUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddUser.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/children/AddUser.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AddUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AddUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -123619,7 +123669,7 @@ component.options.__file = "resources/js/components/admin/children/AddUser.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/admin/children/AddUser.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

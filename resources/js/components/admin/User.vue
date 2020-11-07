@@ -38,8 +38,8 @@
             
           </v-card-title>      
 
-          <v-btn class="mx-2 my-2" fab dark color="indigo">
-              <v-icon dark @click.stop="showDialog = true">mdi-plus</v-icon>
+          <v-btn class="mx-2 my-2" fab dark color="indigo" @click.stop="showDialog = true">
+              <v-icon dark>mdi-plus</v-icon>
             </v-btn>
 
           <v-data-table
