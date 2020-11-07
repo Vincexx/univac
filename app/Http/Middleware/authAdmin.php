@@ -17,7 +17,7 @@ class authAdmin
     public function handle($request, Closure $next)
     {
         if(Auth::check()) {
-            if(Auth::user()->role != "Admin") {
+            if(Auth::user()->role != "admin") {
                 return redirect(route('homepage'));
             }
         }
