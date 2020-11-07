@@ -33,7 +33,7 @@ class CampusesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -63,7 +63,6 @@ class CampusesController extends Controller
             'image' => $image,
             'certificate' => $request->certificate,
         ]); 
-        
 
         return response()->json([
             'message' => 'Campus Created Successfully.',
