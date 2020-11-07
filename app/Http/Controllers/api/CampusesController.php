@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Campus;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Image;
 
 class CampusesController extends Controller
 {
@@ -53,7 +53,7 @@ class CampusesController extends Controller
 
         if($request->hasFile('image')) {
             $image = $request->image->store('campuses_images');
-            $img = Image::make(public_path('storage/' . $image))->fit(1200, 687);
+            $img = \Image::make(public_path('storage/' . $image))->fit(1200, 687);
             $img->save();
         }
 
