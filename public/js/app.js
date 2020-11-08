@@ -3639,7 +3639,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPrograms: function fetchPrograms() {
       var _this = this;
 
-      axios.get('/api/programs', this.config).then(function (res) {
+      axios.get('/api/order-by-name-programs', this.config).then(function (res) {
         return _this.programs = res.data;
       })["catch"](function (err) {
         return console.log(err);

@@ -22,7 +22,7 @@ class CampusesController extends Controller
      */
     public function index()
     {
-        $campuses = Campus::with('programs')->orderBy('name')->get();
+        $campuses = Campus::with('programs')->orderBy('id', 'desc')->get();
         return response()->json($campuses);
     }
 

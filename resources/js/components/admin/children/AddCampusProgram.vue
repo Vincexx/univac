@@ -140,7 +140,7 @@
     },
     methods : {
         fetchPrograms() {
-            axios.get('/api/programs', this.config)
+            axios.get('/api/order-by-name-programs', this.config)
             .then(res => this.programs = res.data)
             .catch(err => console.log(err))
         },

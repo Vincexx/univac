@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Campus;
+use App\Program;
 
 class FrontendController extends Controller
 {
@@ -19,5 +20,11 @@ class FrontendController extends Controller
     public function showCampusPrograms(Campus $campus) {
 
         return view('program')->with('campusPrograms', $campus->programs)->with('campus', $campus);
+    }
+
+    public function orderByNamePrograms() {
+
+        return response()->json(Program::orderBy('name')->get(), 200);
+
     }
 }

@@ -26,6 +26,8 @@ Route::middleware('auth:api')->get('campuses/{campus}/programs', 'api\CampusesCo
 Route::middleware('auth:api')->resource('programs', 'api\ProgramsController');
 Route::middleware('auth:api')->resource('programs-per-campuses', 'api\ProgramsPerCampusesController');
 
+Route::middleware('auth:api')->get('order-by-name-programs', 'FrontendController@orderByNamePrograms');
+
 Route::get('trash-campuses', 'api\TrashCampusesController@index');
 Route::patch('trash-campuses/{id}', 'api\TrashCampusesController@restore');
 Route::delete('trash-campuses/{id}', 'api\TrashCampusesController@destroy');

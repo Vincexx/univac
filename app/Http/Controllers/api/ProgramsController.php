@@ -15,7 +15,7 @@ class ProgramsController extends Controller
      */
     public function index()
     {
-        return response()->json(Program::orderBy('name')->get(), 200);
+        return response()->json(Program::orderBy('id', 'desc')->get(), 200);
     }
 
     /**
