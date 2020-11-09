@@ -137,7 +137,6 @@ class CampusesController extends Controller
      */
     public function destroy(Campus $campus)
     {
-
         $campus->delete();
 
         return response()->json([

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Campus;
+use Illuminate\Support\Facades\Storage;
 
 class TrashCampusesController extends Controller
 {
@@ -37,6 +38,10 @@ class TrashCampusesController extends Controller
     public function destroy($id)
     {
         $trashCampus = Campus::onlyTrashed()->find($id);
+
+        if($trashCampus->image) {
+            Storage::disk()->delete($trashCampus->image);
+        }
 
         if($trashCampus) {
             $trashCampus->forceDelete();
