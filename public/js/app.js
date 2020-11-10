@@ -3406,6 +3406,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showDialog', 'authUser', 'edit', 'campus_id', 'campus1'],
   data: function data() {
@@ -3425,7 +3439,12 @@ __webpack_require__.r(__webpack_exports__);
           'Accept': 'application/json'
         }
       },
-      errorName: ''
+      error: {
+        'name': '',
+        'description': '',
+        'certificate': '',
+        'image': ''
+      }
     };
   },
   computed: {
@@ -3446,7 +3465,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     hideDialog: function hideDialog() {
-      this.$parent.$emit('hide_add_dialog');
+      this.error = {
+        'name': '',
+        'description': '',
+        'certificate': '',
+        'image': ''
+      }, this.$parent.$emit('hide_add_dialog');
     },
     addCampus: function addCampus() {
       var _this = this;
@@ -3460,10 +3484,30 @@ __webpack_require__.r(__webpack_exports__);
         _this.campus.description = '';
         _this.previewImage = '';
         _this.campus.certificate = '';
-
-        _this.$parent.$emit('added_campus', 'Campus Added Successfully');
+        _this.error = {
+          'name': '',
+          'description': '',
+          'certificate': '',
+          'image': ''
+        }, _this.$parent.$emit('added_campus', 'Campus Added Successfully');
       })["catch"](function (err) {
-        _this.errorName = err.response.data.errors.name.toString();
+        var errors = err.response.data.errors;
+
+        if (errors.name) {
+          _this.error.name = errors.name;
+        }
+
+        if (errors.description) {
+          _this.error.description = errors.description;
+        }
+
+        if (errors.certificate) {
+          _this.error.certificate = errors.certificate;
+        }
+
+        if (errors.image) {
+          _this.error.image = errors.image;
+        }
       });
     },
     fileChange: function fileChange(e) {
@@ -3488,6 +3532,11 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         return console.log(err);
       });
+    },
+    fileChange1: function fileChange1(e) {
+      if (e) {
+        this.campus.certificate = e;
+      }
     }
   }
 });
@@ -61422,7 +61471,7 @@ var render = function() {
                               "a",
                               {
                                 attrs: {
-                                  href: item.certificate,
+                                  href: "/storage/" + item.certificate,
                                   target: "__blank"
                                 }
                               },
@@ -62979,11 +63028,9 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
-                          name: "name",
                           label: "Name of Campus*",
-                          id: "id",
-                          error: _vm.errorName ? true : false,
-                          "error-messages": _vm.errorName
+                          error: _vm.error.name ? true : false,
+                          "error-messages": _vm.error.name
                         },
                         model: {
                           value: _vm.campus.name,
@@ -62998,7 +63045,9 @@ var render = function() {
                         attrs: {
                           clearable: "",
                           "clear-icon": "x",
-                          label: "Description"
+                          label: "Description",
+                          error: _vm.error.description ? true : false,
+                          "error-messages": _vm.error.description
                         },
                         model: {
                           value: _vm.campus.description,
@@ -63009,15 +63058,18 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { label: "Link of Certificate" },
-                        model: {
-                          value: _vm.campus.certificate,
-                          callback: function($$v) {
-                            _vm.$set(_vm.campus, "certificate", $$v)
-                          },
-                          expression: "campus.certificate"
-                        }
+                      _c("v-file-input", {
+                        staticClass: "mt-2",
+                        attrs: {
+                          label: "Upload File (Certificate)",
+                          filled: "",
+                          "prepend-icon": "mdi-file",
+                          clearable: "",
+                          "show-size": "",
+                          error: _vm.error.certificate ? true : false,
+                          "error-messages": _vm.error.certificate
+                        },
+                        on: { change: _vm.fileChange1 }
                       }),
                       _vm._v(" "),
                       _vm.campus.image && !_vm.previewImage
@@ -63065,7 +63117,9 @@ var render = function() {
                           clearable: "",
                           name: "image",
                           id: "image",
-                          "show-size": ""
+                          "show-size": "",
+                          error: _vm.error.image ? true : false,
+                          "error-messages": _vm.error.image
                         },
                         on: { change: _vm.fileChange }
                       })

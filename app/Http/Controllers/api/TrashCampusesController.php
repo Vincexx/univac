@@ -43,6 +43,10 @@ class TrashCampusesController extends Controller
             Storage::disk()->delete($trashCampus->image);
         }
 
+        if($trashCampus->certificate) {
+            Storage::disk()->delete($trashCampus->certificate);
+        }
+
         if($trashCampus) {
             $trashCampus->forceDelete();
             return response()->json([

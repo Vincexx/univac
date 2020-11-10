@@ -48,7 +48,7 @@ class CampusesController extends Controller
             'name' => 'required|unique:campuses',
             'description' => '',
             'image' => 'image|max:5000',
-            'certificate' => ''
+            'certificate' => 'mimes:pdf'
         ]);
 
         if($request->hasFile('image')) {
@@ -57,11 +57,15 @@ class CampusesController extends Controller
             $img->save();
         }
 
+        if($request->certificate) {
+            $certificate = $request->certificate->store('certificates');
+        }
+
         $campus = Campus::create([      
             'name' => $request->name,
             'description' => $request->description,
             'image' => $image,
-            'certificate' => $request->certificate,
+            'certificate' => $certificate,
         ]); 
 
         return response()->json([
@@ -120,10 +124,15 @@ class CampusesController extends Controller
             $campus->save();
         }
 
+        if($request->certificate) {
+            Storage::disk()->delete($campus->certificate);
+            $certificate = $request->certificate->store('certificates');
+        }
+
         $campus->update([
             'name' => $request->name,
             'description' => $request->description,
-            'certificate' => $request->certificate,
+            'certificate' => $certificate,
         ]);
        
         return response()->json($campus);

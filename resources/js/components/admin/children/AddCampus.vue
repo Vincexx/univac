@@ -14,12 +14,10 @@
         <v-card-text>
 
             <v-text-field
-                name="name"
                 label="Name of Campus*"
-                id="id"
                 v-model="campus.name"
-                :error="errorName ? true : false"
-                :error-messages="errorName"
+                :error="error.name ? true : false"
+                :error-messages="error.name"
             ></v-text-field>
 
             
@@ -29,12 +27,26 @@
             clear-icon="x"
             label="Description"
             v-model="campus.description"   
+            :error="error.description ? true : false"
+              :error-messages="error.description"
             ></v-textarea>
 
-            <v-text-field
+            <!-- <v-text-field
                 label="Link of Certificate"
                 v-model="campus.certificate"
-            ></v-text-field>
+            ></v-text-field> -->
+
+            <v-file-input
+              class="mt-2"
+              label="Upload File (Certificate)"
+              filled
+              prepend-icon="mdi-file"
+              clearable
+              show-size
+              @change="fileChange1"
+              :error="error.certificate ? true : false"
+              :error-messages="error.certificate"
+            ></v-file-input>
 
           
             <div v-if="campus.image && !previewImage" class="mb-2">
@@ -57,6 +69,8 @@
               id="image"
               show-size
               @change="fileChange"
+               :error="error.image ? true : false"
+              :error-messages="error.image"
             ></v-file-input>
 
             
@@ -109,7 +123,12 @@
               'Accept' : 'application/json',
             } 
         },
-        errorName : ''
+        error : {
+          'name' : '',
+          'description' : '',
+          'certificate' : '',
+          'image' : ''
+        },
       }
       
     },
@@ -131,6 +150,12 @@
     },
     methods : {
       hideDialog() {
+        this.error = {
+          'name' : '',
+          'description' : '',
+          'certificate' : '',
+          'image' : ''
+        },
         this.$parent.$emit('hide_add_dialog')
       },
       addCampus() {
@@ -145,9 +170,32 @@
           this.campus.description = ''
           this.previewImage = ''
           this.campus.certificate = ''
+          this.error = {
+            'name' : '',
+            'description' : '',
+            'certificate' : '',
+            'image' : ''
+          },
           this.$parent.$emit('added_campus', 'Campus Added Successfully')
         }).catch(err => {
-          this.errorName = err.response.data.errors.name.toString()
+          let errors = err.response.data.errors
+
+          if(errors.name) {
+            this.error.name = errors.name
+          } 
+
+          if(errors.description) {
+           this.error.description = errors.description
+          } 
+          
+          if(errors.certificate) {
+           this.error.certificate = errors.certificate
+          } 
+
+          if(errors.image) {
+           this.error.image = errors.image
+          } 
+
         })
       },
       fileChange(e) {
@@ -169,7 +217,12 @@
           this.previewImage = ''
           this.$parent.$emit('campus_updated', 'Selected campus updated successfully.')
         }).catch(err => console.log(err))
-      }
+      },
+       fileChange1(e) {
+        if(e) {
+          this.campus.certificate = e
+        }
+      },
     }
   }
 </script>

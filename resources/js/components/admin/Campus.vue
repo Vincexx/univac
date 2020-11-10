@@ -54,7 +54,7 @@
 
            <template v-slot:item.certificates="{ item }">
 
-              <a :href="item.certificate" target="__blank">
+              <a :href="'/storage/' + item.certificate" target="__blank">
                 <v-icon
                     color="primary"
                 >
