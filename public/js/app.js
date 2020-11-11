@@ -3420,6 +3420,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showDialog', 'authUser', 'edit', 'campus_id', 'campus1'],
   data: function data() {
@@ -3444,7 +3446,8 @@ __webpack_require__.r(__webpack_exports__);
         'description': '',
         'certificate': '',
         'image': ''
-      }
+      },
+      loading: false
     };
   },
   computed: {
@@ -3475,6 +3478,7 @@ __webpack_require__.r(__webpack_exports__);
     addCampus: function addCampus() {
       var _this = this;
 
+      this.loading = true;
       this.form.append('name', this.campus.name);
       this.form.append('description', this.campus.description);
       this.form.append('image', this.file);
@@ -3489,7 +3493,9 @@ __webpack_require__.r(__webpack_exports__);
           'description': '',
           'certificate': '',
           'image': ''
-        }, _this.$parent.$emit('added_campus', 'Campus Added Successfully');
+        }, _this.loading = false;
+
+        _this.$parent.$emit('added_campus', 'Campus Added Successfully');
       })["catch"](function (err) {
         var errors = err.response.data.errors;
 
@@ -63148,7 +63154,11 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "green darken-1", text: "" },
+                          attrs: {
+                            color: "green darken-1",
+                            text: "",
+                            loading: _vm.loading
+                          },
                           on: {
                             click: function($event) {
                               !_vm.edit ? _vm.addCampus() : _vm.updateCampus()

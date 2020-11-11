@@ -46,6 +46,7 @@
               @change="fileChange1"
               :error="error.certificate ? true : false"
               :error-messages="error.certificate"
+              
             ></v-file-input>
 
           
@@ -92,6 +93,7 @@
             color="green darken-1"
             text
             @click="!edit ? addCampus() : updateCampus()"
+            :loading="loading"
           >
             Save
           </v-btn>
@@ -129,6 +131,7 @@
           'certificate' : '',
           'image' : ''
         },
+        loading : false,
       }
       
     },
@@ -159,6 +162,7 @@
         this.$parent.$emit('hide_add_dialog')
       },
       addCampus() {
+        this.loading = true
         this.form.append('name', this.campus.name);
         this.form.append('description', this.campus.description);
         this.form.append('image', this.file);
@@ -176,6 +180,7 @@
             'certificate' : '',
             'image' : ''
           },
+          this.loading = false
           this.$parent.$emit('added_campus', 'Campus Added Successfully')
         }).catch(err => {
           let errors = err.response.data.errors
