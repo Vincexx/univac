@@ -3497,6 +3497,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$parent.$emit('added_campus', 'Campus Added Successfully');
       })["catch"](function (err) {
+        _this.loading = false;
         var errors = err.response.data.errors;
 
         if (errors.name) {
@@ -3538,7 +3539,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$parent.$emit('campus_updated', 'Selected campus updated successfully.');
       })["catch"](function (err) {
-        return console.log(err);
+        _this2.loading = false;
+        console.log(err);
       });
     },
     fileChange1: function fileChange1(e) {

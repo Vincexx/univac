@@ -183,6 +183,7 @@
           this.loading = false
           this.$parent.$emit('added_campus', 'Campus Added Successfully')
         }).catch(err => {
+          this.loading = false
           let errors = err.response.data.errors
 
           if(errors.name) {
@@ -223,7 +224,10 @@
           this.previewImage = ''
           this.loading = false
           this.$parent.$emit('campus_updated', 'Selected campus updated successfully.')
-        }).catch(err => console.log(err))
+        }).catch(err => {
+          this.loading = false
+          console.log(err)
+        })
       },
        fileChange1(e) {
         if(e) {
