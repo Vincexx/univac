@@ -3525,6 +3525,7 @@ __webpack_require__.r(__webpack_exports__);
     updateCampus: function updateCampus() {
       var _this2 = this;
 
+      this.loading = true;
       var form = new FormData();
       form.append('name', this.campus.name);
       form.append('description', this.campus.description);
@@ -3533,6 +3534,7 @@ __webpack_require__.r(__webpack_exports__);
       form.append('_method', 'PUT');
       axios.post('/api/campuses/' + this.campus.id, form, this.config).then(function (res) {
         _this2.previewImage = '';
+        _this2.loading = false;
 
         _this2.$parent.$emit('campus_updated', 'Selected campus updated successfully.');
       })["catch"](function (err) {
@@ -4078,6 +4080,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -63788,7 +63791,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "290" },
+          attrs: { "max-width": "290", persistent: "" },
           model: {
             value: _vm.dialog,
             callback: function($$v) {

@@ -124,15 +124,16 @@ class CampusesController extends Controller
             $campus->save();
         }
 
-        if($request->certificate) {
+        if($request->hasFile('certificate')) {
             Storage::disk()->delete($campus->certificate);
             $certificate = $request->certificate->store('certificates');
+            $campus->certificate = $certificate;
+            $campus->save();
         }
 
         $campus->update([
             'name' => $request->name,
             'description' => $request->description,
-            'certificate' => $certificate,
         ]);
        
         return response()->json($campus);

@@ -210,6 +210,7 @@
         }
       },
       updateCampus() {
+        this.loading = true
         const form = new FormData()
         form.append('name', this.campus.name);
         form.append('description', this.campus.description);
@@ -220,6 +221,7 @@
         axios.post('/api/campuses/' + this.campus.id, form, this.config)
         .then(res => {
           this.previewImage = ''
+          this.loading = false
           this.$parent.$emit('campus_updated', 'Selected campus updated successfully.')
         }).catch(err => console.log(err))
       },
