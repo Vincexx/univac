@@ -164,6 +164,7 @@
   </div>
 @endsection
 
+{{-- Campuses --}}
 @section('campuses')
   <div class="latest-products">
     <div class="container">
