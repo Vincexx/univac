@@ -61,6 +61,9 @@
       <div class="banner-item-01">
           <div class="overlay">
             <div class="text-content">
+              @auth
+                <h5 style="color: #34ee3d;">Welcome, {{ Auth::user()->name }} to</p>
+              @endauth
               <h2>CAVITE STATE UNIVERSITY</h4>
               <h4>VIRTUAL ACCREDITATION CENTER</h2>
             </div>
@@ -150,25 +153,38 @@
         </div>
         <div class="col-md-6">
           <ul class="others">
-            <li>
-                <a href="" target="__blank">Accreditation Status</a>
-            </li>
-            <li>
-                <a>Survey Visit Schedule</a>
-              
-            </li>
-            <li>
-                <a>Photo Documentation </a>
-            
-            </li>
-            <li>
-                <a>Accomplishment Report</a>
                 
-            </li>
-            <li>
-              <a>List of Internal Accreditors</a>
+              @foreach ($documents as $document)
+                  
+                  @if ($document->name == "Accreditation Status")
+                      <li>
+                          <a href="/storage/{{ $document->file }}" target="new">Accreditation Status</a>
+                      </li>
+                  @endif
+
+                  @if ($document->name == "Survey Visit Schedule")
+                      <li>
+                          <a href="/storage/{{ $document->file }}" target="new">Survey Visit Schedule</a>
+                      </li>
+                  @endif
+
+                  @if ($document->name == "Accomplishment Report")
+                      <li>
+                          <a href="/storage/{{ $document->file }}" target="new">Accomplishment Report</a>
+                      </li>
+                  @endif
+                
+                  @if ($document->name == "List of Internal Accreditors")
+                      <li>
+                          <a href="/storage/{{ $document->file }}" target="new">List of Internal Accreditors</a>
+                      </li>
+                  @endif
             
-          </li>
+              @endforeach
+
+                  <li>
+                    <a>Photo Documentation </a>
+                  </li>
           </ul>
         </div>
         <div class="col-md-6">

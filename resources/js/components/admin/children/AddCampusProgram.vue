@@ -92,6 +92,7 @@
     data () {
       return {
         levels: [
+            'Preliminary Survey Visit',
             'Level I',
             'Level II',
             'Level III',

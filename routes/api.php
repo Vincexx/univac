@@ -39,3 +39,5 @@ Route::delete('trash-programs/{id}', 'api\TrashProgramsController@destroy');
 Route::get('trash-users', 'api\TrashUsersController@index');
 Route::patch('trash-users/{id}', 'api\TrashUsersController@restore');
 Route::delete('trash-users/{id}', 'api\TrashUsersController@destroy');
+
+Route::middleware('auth:api')->resource('other-documents', 'api\OtherDocumentsController');

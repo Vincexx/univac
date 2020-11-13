@@ -16,6 +16,7 @@ import Campuses from './components/admin/Campus.vue'
 import Programs from './components/admin/Program.vue'
 import Trash from './components/admin/Trash.vue'
 import ShowCampusPrograms from './components/admin/ShowCampusProgram.vue'
+import Others from './components/admin/Others.vue'
 
 const router = new VueRouter ({
     mode : 'history',
@@ -56,6 +57,13 @@ const router = new VueRouter ({
             path : '/admin/trash',
             component : Trash,
             name : 'trash',
+            props : true
+        },
+
+        {
+            path : '/admin/other-documents',
+            component : Others,
+            name : 'others',
             props : true
         },
     ]

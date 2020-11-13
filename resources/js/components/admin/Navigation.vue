@@ -76,6 +76,17 @@
             </v-list-item>
           </router-link>
 
+           <router-link :to="{ name : 'others' }">
+            <v-list-item link>
+              <v-list-item-action>
+                <v-icon>mdi-file</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Other Documents</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </router-link>
+
           <router-link :to="{ name : 'trash' }">
             <v-list-item link>
               <v-list-item-action>

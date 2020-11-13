@@ -48,7 +48,7 @@ class CampusesController extends Controller
             'name' => 'required|unique:campuses',
             'description' => '',
             'image' => 'image|max:5000',
-            'certificate' => 'mimes:pdf'
+            'certificate' => ''
         ]);
 
         if($request->hasFile('image')) {
@@ -59,6 +59,8 @@ class CampusesController extends Controller
 
         if($request->certificate) {
             $certificate = $request->certificate->store('certificates');
+        } else {
+            $certificate = '';
         }
 
         $campus = Campus::create([      
@@ -70,7 +72,6 @@ class CampusesController extends Controller
 
         return response()->json([
             'message' => 'Campus Created Successfully.',
-            'campus' => $campus
         ]);
 
 
