@@ -4055,7 +4055,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['showDialog', 'authUser', 'edit', 'otherdocument'],
   data: function data() {
     return {
-      documents_name: ['Accreditation Status', 'Survey Visit Schedule', 'Accomplishment Report', 'List of Internal Accreditors'],
+      documents_name: ['Accreditation Status', 'Survey Visit Schedule', 'Accomplishment Report', 'List of Internal Accreditors', 'Organizational Structure'],
       loading: false,
       other_document1: {
         name: '',
@@ -4417,6 +4417,7 @@ __webpack_require__.r(__webpack_exports__);
     registerUser: function registerUser() {
       var _this = this;
 
+      this.user.name.toUpperCase();
       axios.post('/api/users', this.user, this.config).then(function (res) {
         _this.user.name = '';
         _this.user.email = '';
@@ -64593,7 +64594,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("\n          Register\n        ")]
+                        [_vm._v("\n          Save\n        ")]
                       )
                     ],
                     1

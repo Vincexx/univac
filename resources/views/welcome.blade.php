@@ -177,16 +177,21 @@
         @foreach ($campuses as $campus)
           <div class="col-md-4">
             <div class="product-item">
-            <a href="#"><img src="{{ asset('/storage/'. $campus->image) }}" alt=""></a>
+
+              @if ($campus->programs->count() > 0)
+                <a href="#"><img src="{{ asset('/storage/'. $campus->image) }}" alt=""></a>
+              @else 
+                <a href="#"><img src="{{ asset('/storage/'. $campus->image) }}" alt="" style="filter: blur(4px);"></a>
+              @endif
+
               <div class="down-content">
-              <a><h4>{{ $campus->name }}</h4></a>
-                {{-- <p>Schedule Visit : </p> --}}
-                @if (Auth::check())
-                  <ul class="stars">
-                    <li><a href="{{ route('campusPrograms', $campus->id) }}">PROGRAMS</a></li>
-                    <li><a href="/storage/{{ $campus->certificate }}" target="__blank">CERTIFICATES</a></li>
-                  </ul> 
-                @endif
+                  <a><h4>{{ $campus->name }}</h4></a>
+                  @if (Auth::check())
+                    <ul class="stars">
+                      <li><a href="{{ route('campusPrograms', $campus->id) }}">PROGRAMS</a></li>
+                      <li><a href="/storage/{{ $campus->certificate }}" target="__blank">CERTIFICATES</a></li>
+                    </ul> 
+                  @endif
               </div>
             </div>
           </div>
@@ -239,6 +244,12 @@
                   @if ($document->name == "List of Internal Accreditors")
                       <li>
                           <a href="/storage/{{ $document->file }}" target="new">List of Internal Accreditors</a>
+                      </li>
+                  @endif
+
+                  @if ($document->name == "Organizational Structure")
+                      <li>
+                          <a href="/storage/{{ $document->file }}" target="new">Organizational Structure</a>
                       </li>
                   @endif
             

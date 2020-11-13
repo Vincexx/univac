@@ -57,7 +57,7 @@ class CampusesController extends Controller
             $img->save();
         }
 
-        if($request->certificate) {
+        if($request->hasFile('file')) {
             $certificate = $request->certificate->store('certificates');
         } else {
             $certificate = '';

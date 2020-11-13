@@ -69,6 +69,7 @@
             'Survey Visit Schedule',
             'Accomplishment Report',
             'List of Internal Accreditors',
+            'Organizational Structure',
         ],
         loading : false,
         other_document1 : {

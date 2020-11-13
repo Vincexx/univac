@@ -72,7 +72,7 @@
             text
             @click="!edit ? registerUser() : updateUser()"
           >
-            Register
+            Save
           </v-btn>
         </v-card-actions>
         
@@ -143,6 +143,7 @@
             this.$parent.$emit('hide_dialog')
         },
         registerUser() {
+            this.user.name.toUpperCase()
             axios.post('/api/users', this.user, this.config)
             .then(res => {
                 this.user.name = ''
