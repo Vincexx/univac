@@ -75,6 +75,7 @@
             color="green darken-1"
             text
             @click="!edit ? addProgram() : updateProgram()"
+            :loading="loading"
           >
             Save
           </v-btn>
@@ -98,6 +99,7 @@
             'Level III',
             'Level IV',
         ],
+        loading : false,
         programs : [],
         date: new Date().toISOString().substr(0, 10),
         menu: false,
@@ -153,6 +155,7 @@
             this.$parent.$emit('hideDialog')
         },
         addProgram() {
+            this.loading = true
             this.program.campus_id = this.campusID 
             axios.post('/api/programs-per-campuses', this.program, this.config)
             .then(res => {
@@ -160,18 +163,27 @@
                 this.program.level = ''
                 this.program.validity = ''
                 this.program.link = ''
+                this.loading = false
                 this.$parent.$emit('programpercampus_added', 'Program added successful.')
-            }).catch(err => console.log(err))
+            }).catch(err => {
+              this.loading = false
+              console.log(err)
+            })
         },
         updateProgram() {
+            this.loading = true
             axios.put('/api/programs-per-campuses/' + this.program.id, this.program, this.config)
             .then(res => {
+                this.loading = false
                 this.program.name = ''
                 this.program.level = ''
                 this.program.validity = ''
                 this.program.link = ''
                 this.$parent.$emit('programpercampus_added', 'Program updated successful.')
-            }).catch(err => console.log(err))
+            }).catch(err => {
+              console.log(err)
+              this.loading = false
+            })
         }
     }
 

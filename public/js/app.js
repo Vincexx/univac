@@ -2871,6 +2871,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2882,6 +2894,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$on('programpercampus_added', function (message) {
       _this.message = message;
       _this.snackbar = true;
+      _this.edit = false;
 
       _this.fetchCampusPrograms();
 
@@ -2916,8 +2929,9 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Validity',
         value: 'validity'
       }, {
-        text: 'Link',
-        value: 'link'
+        text: 'Links',
+        value: 'links',
+        sortable: false
       }, {
         text: 'Actions',
         value: 'actions',
@@ -3864,11 +3878,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showDialog', 'campusID', 'edit', 'campusProgram1', 'authUser'],
   data: function data() {
     return {
       levels: ['Preliminary Survey Visit', 'Level I', 'Level II', 'Level III', 'Level IV'],
+      loading: false,
       programs: [],
       date: new Date().toISOString().substr(0, 10),
       menu: false,
@@ -3928,22 +3944,27 @@ __webpack_require__.r(__webpack_exports__);
     addProgram: function addProgram() {
       var _this2 = this;
 
+      this.loading = true;
       this.program.campus_id = this.campusID;
       axios.post('/api/programs-per-campuses', this.program, this.config).then(function (res) {
         _this2.program.name = '';
         _this2.program.level = '';
         _this2.program.validity = '';
         _this2.program.link = '';
+        _this2.loading = false;
 
         _this2.$parent.$emit('programpercampus_added', 'Program added successful.');
       })["catch"](function (err) {
-        return console.log(err);
+        _this2.loading = false;
+        console.log(err);
       });
     },
     updateProgram: function updateProgram() {
       var _this3 = this;
 
+      this.loading = true;
       axios.put('/api/programs-per-campuses/' + this.program.id, this.program, this.config).then(function (res) {
+        _this3.loading = false;
         _this3.program.name = '';
         _this3.program.level = '';
         _this3.program.validity = '';
@@ -3951,7 +3972,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.$parent.$emit('programpercampus_added', 'Program updated successful.');
       })["catch"](function (err) {
-        return console.log(err);
+        console.log(err);
+        _this3.loading = false;
       });
     }
   }
@@ -62950,6 +62972,36 @@ var render = function() {
                     },
                     scopedSlots: _vm._u([
                       {
+                        key: "item.links",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "a",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: item.link,
+                                    expression: "item.link"
+                                  }
+                                ],
+                                attrs: { target: "new", href: item.link }
+                              },
+                              [
+                                _c("v-icon", { attrs: { color: "primary" } }, [
+                                  _vm._v(
+                                    "\n                  mdi-link\n              "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ]
+                        }
+                      },
+                      {
                         key: "item.actions",
                         fn: function(ref) {
                           var item = ref.item
@@ -64036,7 +64088,11 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "green darken-1", text: "" },
+                          attrs: {
+                            color: "green darken-1",
+                            text: "",
+                            loading: _vm.loading
+                          },
                           on: {
                             click: function($event) {
                               !_vm.edit ? _vm.addProgram() : _vm.updateProgram()

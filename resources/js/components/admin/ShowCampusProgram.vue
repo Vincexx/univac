@@ -54,6 +54,18 @@
             :items="campusPrograms"
             :search="search"
           >
+
+          <template v-slot:item.links="{ item }">
+
+              <a target="new" :href="item.link" v-show="item.link">
+                <v-icon
+                    color="primary"
+                >
+                    mdi-link
+                </v-icon>
+              </a>
+
+          </template>
           
            <template v-slot:item.actions="{ item }">
               <v-icon
@@ -96,6 +108,7 @@
       this.$on('programpercampus_added', (message) => {
         this.message = message
         this.snackbar = true
+        this.edit = false
         this.fetchCampusPrograms()
         this.showDialog = false
       })
@@ -123,7 +136,7 @@
         { text: 'Name of Program', value: 'name' },
         { text: 'Level', value: 'level' },
         { text: 'Validity', value: 'validity'},
-        { text: 'Link', value: 'link' },
+        { text: 'Links', value: 'links', sortable: false },
         { text: 'Actions', value: 'actions', sortable: false },
         ],
         campusPrograms : [],
