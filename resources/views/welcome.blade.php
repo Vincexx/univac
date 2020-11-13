@@ -62,7 +62,7 @@
           <div class="overlay">
             <div class="text-content">
               @auth
-                <h5 style="color: #34ee3d;">Welcome, {{ Auth::user()->name }} to</p>
+                <h5 style="color: #34ee3d;">WELCOME, {{ Auth::user()->name }} TO</p>
               @endauth
               <h2>CAVITE STATE UNIVERSITY</h4>
               <h4>VIRTUAL ACCREDITATION CENTER</h2>
