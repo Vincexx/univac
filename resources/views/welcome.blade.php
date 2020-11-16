@@ -179,12 +179,8 @@
           <div class="col-md-4">
             <div class="product-item">
 
-              @if ($campus->programs->count() > 0)
-                <a href="#"><img src="{{ asset('/storage/'. $campus->image) }}" alt=""></a>
-              @else 
-                <a href="#"><img src="{{ asset('/storage/'. $campus->image) }}" alt="" style="filter: blur(4px);"></a>
-              @endif
-
+              <a href="#"><img src="{{ asset('/storage/'. $campus->image) }}" alt=""></a>
+             
               <div class="down-content">
                   <a><h4>{{ $campus->name }}</h4></a>
                   @if (Auth::check())
