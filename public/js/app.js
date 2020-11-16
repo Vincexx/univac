@@ -62230,7 +62230,9 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-list-item-content",
-                        [_c("v-list-item-title", [_vm._v("Campuses")])],
+                        [
+                          _c("v-list-item-title", [_vm._v("Colleges/Campuses")])
+                        ],
                         1
                       )
                     ],
