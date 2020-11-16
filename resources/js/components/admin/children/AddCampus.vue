@@ -38,7 +38,7 @@
 
             <v-file-input
               class="mt-2"
-              label="Upload File (Certificate)"
+              placeholder="Upload File (Certificate)"
               filled
               prepend-icon="mdi-file"
               clearable
@@ -46,7 +46,7 @@
               @change="fileChange1"
               :error="error.certificate ? true : false"
               :error-messages="error.certificate"
-              
+              label="In portable document format (pdf)"
             ></v-file-input>
 
           

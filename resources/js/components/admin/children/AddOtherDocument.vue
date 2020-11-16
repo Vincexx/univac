@@ -12,22 +12,28 @@
         <v-card-title class="headline" v-show="edit">Edit Document</v-card-title>
 
         <v-card-text>
-
-              <v-select
+              
+              <!-- <v-select
                 :items="documents_name"
                 label="Select Document"
                 dense
                 v-model="other_document.name"
-              ></v-select>
+              ></v-select> -->
+
+            <v-text-field
+              label="Name of Campus*"
+              v-model="other_document.name"
+          ></v-text-field>
 
             <v-file-input
               class="mt-2"
-              label="Upload File (Documents)"
+              placeholder="Upload File (Document)"
               filled
               prepend-icon="mdi-file"
               clearable
               show-size
-              @change="fileChange"        
+              @change="fileChange"    
+              label="In portable document format (pdf)"    
             ></v-file-input>
 
         </v-card-text>

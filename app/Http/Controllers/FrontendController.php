@@ -11,7 +11,7 @@ use App\OtherDocument;
 class FrontendController extends Controller
 {
     public function showAllCampuses() {
-        return view('welcome')->with('campuses', Campus::orderBy('name')->get())->with('documents', OtherDocument::all());
+        return view('welcome')->with('campuses', Campus::orderBy('name')->get())->with('documents', OtherDocument::orderBy('name')->get());
     }
 
     public function about() {

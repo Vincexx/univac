@@ -2492,6 +2492,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -3990,6 +3993,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62465,9 +62474,10 @@ var render = function() {
                   _c(
                     "v-card-title",
                     [
-                      _vm._v(
-                        "\n          \n          Other Documents\n          "
-                      ),
+                      _c("div", { staticClass: "regular" }, [
+                        _vm._v("\n            Other Documents\n          ")
+                      ]),
+                      _vm._v(" "),
                       _c("v-spacer"),
                       _vm._v(" "),
                       _c("v-text-field", {
@@ -63756,13 +63766,14 @@ var render = function() {
                       _c("v-file-input", {
                         staticClass: "mt-2",
                         attrs: {
-                          label: "Upload File (Certificate)",
+                          placeholder: "Upload File (Certificate)",
                           filled: "",
                           "prepend-icon": "mdi-file",
                           clearable: "",
                           "show-size": "",
                           error: _vm.error.certificate ? true : false,
-                          "error-messages": _vm.error.certificate
+                          "error-messages": _vm.error.certificate,
+                          label: "In portable document format (pdf)"
                         },
                         on: { change: _vm.fileChange1 }
                       }),
@@ -64200,12 +64211,8 @@ var render = function() {
                   _c(
                     "v-card-text",
                     [
-                      _c("v-select", {
-                        attrs: {
-                          items: _vm.documents_name,
-                          label: "Select Document",
-                          dense: ""
-                        },
+                      _c("v-text-field", {
+                        attrs: { label: "Name of Campus*" },
                         model: {
                           value: _vm.other_document.name,
                           callback: function($$v) {
@@ -64218,11 +64225,12 @@ var render = function() {
                       _c("v-file-input", {
                         staticClass: "mt-2",
                         attrs: {
-                          label: "Upload File (Documents)",
+                          placeholder: "Upload File (Document)",
                           filled: "",
                           "prepend-icon": "mdi-file",
                           clearable: "",
-                          "show-size": ""
+                          "show-size": "",
+                          label: "In portable document format (pdf)"
                         },
                         on: { change: _vm.fileChange }
                       })

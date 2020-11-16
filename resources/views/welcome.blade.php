@@ -219,14 +219,20 @@
           <ul class="others">
                 
               @foreach ($documents as $document)
+
+
+                  <li>
+                      <a href="/storage/{{ $document->file }}" target="new">{{ $document->name }}</a>
+                  </li>
+             
                   
-                  @if ($document->name == "Accreditation Status")
+                  {{-- @if ($document->name == "Accreditation Status")
                       <li>
                           <a href="/storage/{{ $document->file }}" target="new">Accreditation Status</a>
                       </li>
-                  @endif
+                  @endif --}}
 
-                  @if ($document->name == "Survey Visit Schedule")
+                  {{-- @if ($document->name == "Survey Visit Schedule")
                       <li>
                           <a href="/storage/{{ $document->file }}" target="new">Survey Visit Schedule</a>
                       </li>
@@ -248,13 +254,10 @@
                       <li>
                           <a href="/storage/{{ $document->file }}" target="new">Organizational Structure</a>
                       </li>
-                  @endif
+                  @endif --}}
             
               @endforeach
 
-                  <li>
-                    <a>Photo Documentation </a>
-                  </li>
           </ul>
         </div>
         <div class="col-md-6">
