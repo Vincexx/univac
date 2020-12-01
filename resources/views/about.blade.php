@@ -81,59 +81,34 @@
             <h2>Vision, Mission and Quality Policy</h2>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
+          <div class="left-content">
+            <img src="{{ asset('img/accrevisit.jpg') }}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
           <div class="left-content">
             <h4>Vision</h4>
             <p style="border: none;">The premier university in historic Cavite recognized for excellence in the development of globally competitive and morally upright individuals
             </p>
           </div>
-        </div>
-        <div class="col-md-4">
           <div class="left-content">
             <h4>Mission</h4>
             <p style="border: none;">Cavite State University shall provide excellent, equitable and relevant educational opportunities in the arts, sciences and technology through quality instruction and responsive research and development activities. It shall produce professional, skilled and morally upright individuals for global competitiveness.</p>
           </div>
-        </div>
-        <div class="col-md-4">
           <div class="left-content">
             <h4>Quality Policy</h4>
             <p style="border: none;">We Commit to the highest standards of education, value our stakeholders, Strive for continual improvement of our products and services, and Uphold the University’s tenets of Truth, Excellence, and Service to produce globally competitive and morally upright individuals.</p>
           </div>
         </div>
+     
+     
       </div>
     </div>
   </div>
 @endsection
 
-@section('documents')
-<div class="best-features about-features">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h2>Our Background</h2>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="right-image">
-          <img src="{{ asset('img/accrevisit.jpg') }}" alt="">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="left-content">
-            <h4>Who we are &amp; What we do?</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis.</p>
-            <ul class="social-icons">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-@endsection
+
 
 
 @section('footer')
