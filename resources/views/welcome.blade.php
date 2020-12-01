@@ -3,6 +3,25 @@
 
 @section('title')
     <title>CvSU Institutional  Development Office</title>
+    <script>
+
+          // let more = document.getElementsByClassName('more')
+          
+          function readMore() {
+              $(".more").css("display", "block");
+              $(".read").css("display", "none");
+              $(".less").css("display", "block");
+          }
+
+          function readLess() {
+              $(".more").css("display", "none");
+              $(".read").css("display", "block");
+              $(".less").css("display", "none");
+          }
+
+          
+
+    </script>
 @endsection
 
 @section('header')
@@ -93,7 +112,7 @@
               school was converted into a State College by virtue of Republic Act 3917 and became known as
               Don Severino Agricultural College (DSAC). <span class="dots"> ...</span> </p>
             
-            <span class="more" style="display: none;">
+            <span class="more" >
               <p>On January 22, 1998, by virtue of Republic Act No.8468, DSAC was converted into
                 Cavite State University. In 2001, Cavite College of Fisheries (CACOF) in Naic, Cavite and
                 Cavite College of Arts and Trade (CCAT) in Rosario, Cavite, were integrated to the University
@@ -145,7 +164,11 @@
                     improvement of lives of community members.</p>
             </span>
 
-                  <button class="read btn" type="button" onclick="readMore()">Read More</button>
+            <button class="read btn" type="button" onclick="readMore()">Read More</button>
+            <button class="less btn" type="button" onclick="readLess()">Read Less</button>
+            
+
+         
 
             <hr>
             <ul class="nav">

@@ -70,6 +70,8 @@ const router = new VueRouter ({
 
 })
 
+
+
 Vue.component('admin-navigation', require('./components/admin/Navigation.vue').default);
 
 const app = new Vue({

@@ -5,6 +5,14 @@ TemplateMo 546 Sixteen Clothing
 https://templatemo.com/tm-546-sixteen-clothing
 
 */
+.more {
+	display: none;
+
+}
+
+.less {
+	display: none;
+}
 
 
 body {

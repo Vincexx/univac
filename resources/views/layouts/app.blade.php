@@ -84,7 +84,6 @@
                 t.style.color='#fff';
                 }
             }
-            
               
         </script>
         
